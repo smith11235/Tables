@@ -1,21 +1,4 @@
-scaffolds:
-  DataSet:
-		fields:
-			- name:string # common table name, may or may not be unique
-			- parameters:string # useful for recording table initialization parameters
-      - checksum:string # unique id for a set of tables based on the checksum of name+parameters
-			- source:string # for recording where this set came from
-		has_many :headers, :records
 
-	Field: 
-	  fields:
-			- data_set:references
-			- name:string # for label matching/searching 
-
-	Record:
-	  fields:
-			- data_set:references
-	  has_many: :fields, :cells
 
 	Cell:
 	  fields:
