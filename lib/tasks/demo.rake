@@ -1,11 +1,23 @@
 namespace :demo do
 
-	task :show => :environment do
-		sets = DataSet.all
+	task :index,[:search] => :environment do |t,args|
+		args.with_defaults :search => "*"
 
-		puts "Sets: #{sets.size}"
-		sets.each do |set|
-			puts "  - #{set.name} #{set.created_at}"
+		puts "Datasets: #{DataSet.count}"
+		# this command taken from: 
+		# http://stackoverflow.com/questions/8369812/rails-how-can-i-get-unique-values-from-column 
+		unique_names = DataSet.select( :name ).uniq
+		puts "Unique Set Names: #{unique_names.size}"
+		puts unique_names.to_yaml
+		unique_names.each do |desired_set|
+			subsets = DataSet.where( :name => desired_set.name )
+			puts " - #{desired_set.name}: iterations #{subsets.size}"
+			subsets.each do |set|
+				puts "   - { :created_at => #{set[:created_at]},"
+			  puts "       :record_count => #{set.records.size},"
+				puts "       :distinct_fields => #{set.fields.size}"
+				puts "     }"
+			end
 		end
 	end
 
@@ -18,7 +30,7 @@ namespace :demo do
 			puts " Records: #{dataset[:records].size}" if( dataset.has_key?( :records ) && dataset[:records].is_a?( Array ) )
 
 			set = DataSet.new( :name => dataset[:name], :source => "rake demo:do" )	
-			set.save!
+			set.save! 
 			ifield = set.fields.create :name => "i" # for recording record indecies
 
 			dataset[:records].each_with_index do |record_hash,i|
