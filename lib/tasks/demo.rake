@@ -7,15 +7,13 @@ namespace :demo do
 		# this command taken from: 
 		# http://stackoverflow.com/questions/8369812/rails-how-can-i-get-unique-values-from-column 
 		unique_names = DataSet.select( :name ).uniq
-		puts "Unique Set Names: #{unique_names.size}"
-		puts unique_names.to_yaml
 		unique_names.each do |desired_set|
 			subsets = DataSet.where( :name => desired_set.name )
 			puts " - #{desired_set.name}: iterations #{subsets.size}"
 			subsets.each do |set|
 				puts "   - { :created_at => #{set[:created_at]},"
 			  puts "       :record_count => #{set.records.size},"
-				puts "       :distinct_fields => #{set.fields.size}"
+				puts "       :fields => #{set.fields.size}"
 				puts "     }"
 			end
 		end
