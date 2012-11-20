@@ -1,17 +1,39 @@
 namespace :demo do
 
-	task :do => :environment do
+	task :show => :environment do
+		sets = DataSet.all
+
+		puts "Sets: #{sets.size}"
+		sets.each do |set|
+			puts "  - #{set.name} #{set.created_at}"
+		end
+	end
+
+	task :load => :environment do
 		Rake::Task["db:reset"].invoke
 
 		datasets = get_simple_datasets
 		datasets.each do |dataset|
 			puts "Name: #{dataset[:name]}" if dataset.has_key?( :name )
 			puts " Records: #{dataset[:records].size}" if( dataset.has_key?( :records ) && dataset[:records].is_a?( Array ) )
+
 			set = DataSet.new( :name => dataset[:name], :source => "rake demo:do" )	
-			dataset[:records].each do |record|
+			set.save!
+			ifield = set.fields.create :name => "i" # for recording record indecies
 
-				record.each do |field,raw|
+			dataset[:records].each_with_index do |record_hash,i|
+				record = set.records.create  
+				i_cell = record.cells.create( :int => i )
+ 				i_cell.field = ifield
+				i_cell.save
 
+				record_hash.each do |key,value|
+					# distinctly get a field, create a listing for it if it's new
+					field = set.fields.where( :name => key ).first
+					field = set.fields.create( :name => key ) if field.nil?
+					cell = record.cells.create :string => value.to_s
+					cell.field = field
+					cell.save 
 				end
 			end
 		end
