@@ -1,0 +1,33 @@
+<h1>Listing cells</h1>
+
+<table>
+  <tr>
+    <th>Record</th>
+    <th>Field</th>
+    <th>String</th>
+    <th>Datetime</th>
+    <th>Int</th>
+    <th>Float</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @cells.each do |cell| %>
+  <tr>
+    <td><%= cell.record %></td>
+    <td><%= cell.field %></td>
+    <td><%= cell.string %></td>
+    <td><%= cell.datetime %></td>
+    <td><%= cell.int %></td>
+    <td><%= cell.float %></td>
+    <td><%= link_to 'Show', cell %></td>
+    <td><%= link_to 'Edit', edit_cell_path(cell) %></td>
+    <td><%= link_to 'Destroy', cell, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Cell', new_cell_path %>

@@ -1,4 +1,12 @@
 Tables::Application.routes.draw do
+  resources :cells
+
+  resources :records
+
+  resources :fields
+
+  resources :data_sets
+
   # The priority is based upon order of creation:
   # first created -> highest priority.
 

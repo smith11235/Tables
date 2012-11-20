@@ -1,0 +1,25 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Name:</b>
+  <%= @data_set.name %>
+</p>
+
+<p>
+  <b>Parameters:</b>
+  <%= @data_set.parameters %>
+</p>
+
+<p>
+  <b>Checksum:</b>
+  <%= @data_set.checksum %>
+</p>
+
+<p>
+  <b>Source:</b>
+  <%= @data_set.source %>
+</p>
+
+
+<%= link_to 'Edit', edit_data_set_path(@data_set) %> |
+<%= link_to 'Back', data_sets_path %>

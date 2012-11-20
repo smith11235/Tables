@@ -1,0 +1,35 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Record:</b>
+  <%= @cell.record %>
+</p>
+
+<p>
+  <b>Field:</b>
+  <%= @cell.field %>
+</p>
+
+<p>
+  <b>String:</b>
+  <%= @cell.string %>
+</p>
+
+<p>
+  <b>Datetime:</b>
+  <%= @cell.datetime %>
+</p>
+
+<p>
+  <b>Int:</b>
+  <%= @cell.int %>
+</p>
+
+<p>
+  <b>Float:</b>
+  <%= @cell.float %>
+</p>
+
+
+<%= link_to 'Edit', edit_cell_path(@cell) %> |
+<%= link_to 'Back', cells_path %>

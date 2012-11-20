@@ -1,0 +1,17 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  record: 
+  field: 
+  string: MyString
+  datetime: 2012-11-20 00:51:05
+  int: 
+  float: 1.5
+
+two:
+  record: 
+  field: 
+  string: MyString
+  datetime: 2012-11-20 00:51:05
+  int: 
+  float: 1.5

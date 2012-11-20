@@ -7,25 +7,20 @@ scaffolds:
 			- source:string # for recording where this set came from
 		has_many :headers, :records
 
-	DataType:
-		fields:
-			- name:string # string, datetime, int, float
-
-	Header: 
+	Field: 
 	  fields:
 			- data_set:references
 			- name:string # for label matching/searching 
-			- data_type:references  # for programmatic types 
 
 	Record:
 	  fields:
 			- data_set:references
-	  has_many: :headers, :cells
+	  has_many: :fields, :cells
 
 	Cell:
 	  fields:
 			- record:references
-			- header:references
+			- field:references
 			- raw:string
 			- string:string
 			- datetime:datetime
