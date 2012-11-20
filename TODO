@@ -1,0 +1,53 @@
+scaffolds:
+  DataSet:
+		fields:
+			- name:string # common table name, may or may not be unique
+			- parameters:string # useful for recording table initialization parameters
+      - checksum:string # unique id for a set of tables based on the checksum of name+parameters
+			- source:string # for recording where this set came from
+		has_many :headers, :records
+
+	DataType:
+		fields:
+			- name:string # string, datetime, int, float
+
+	Header: 
+	  fields:
+			- data_set:references
+			- name:string # for label matching/searching 
+			- data_type:references  # for programmatic types 
+
+	Record:
+	  fields:
+			- data_set:references
+	  has_many: :headers, :cells
+
+	Cell:
+	  fields:
+			- record:references
+			- header:references
+			- raw:string
+			- string:string
+			- datetime:datetime
+			- int:int
+			- float:float
+
+view:
+	- by table.name
+	- by table.name and table.signature # for a specific table rendering
+	- by table.name and table.signature and table.created_at =  # for a specific revision
+	- multi-table linking by fields
+
+api:
+	- for logging: 
+	  - $table = Table.new( "stats" )
+	  - $table = Table.new( "stats", "id=5" ) # with parameters
+		- $table = Table.new( "stats", "id=5", "pro-football-reference.com/stats/5/" )
+		- $table.log( :notice => "Crawler starting load", :job_id => "18383" )
+		- my_hash.keys.each_with_index do |key,i|
+				$table.log( :i => i, :key => key, :value => my_hash[key] )
+			end
+
+deployment:
+	gem, expose hook to db:migrate? or expose a start up routine
+	 allow gem to read config dirs for datatype fixtures and other controller logic/special searches 
