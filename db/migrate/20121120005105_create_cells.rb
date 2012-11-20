@@ -5,7 +5,7 @@ class CreateCells < ActiveRecord::Migration
       t.references :field
       t.string :string
       t.datetime :datetime
-      t.int :int
+      t.integer :int
       t.float :float
 
       t.timestamps
