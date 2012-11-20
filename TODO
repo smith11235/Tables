@@ -1,14 +1,27 @@
+simple.yml
+friends:
+ :records:
+   - { recorded_on: "2011-07-31" }
+	 - { i: 0, name: mike, age: 25 }
+	 - { i: 1, name: jon, age: 25, status: little }
+	 - { i: 2, name: john, age: 25, status: awol }
+	 - { i: 3, name: andrew, age: old }
+	 - { i: 4, name: kate, age: 24, is_a: student }
 
+friends:
+ :records:
+  - { recorded_on: 2011-07-31 }
+	- { i: 1, name: jon, age: 25, status: little }
+	- { i: 2, name: john, age: 26, status: awol }
+	- { i: 3, name: andrew, age: so old, married_to: kate }
+	- { i: 4, name: kate, age: 25, is_a: doctor }
 
-	Cell:
-	  fields:
-			- record:references
-			- field:references
-			- raw:string
-			- string:string
-			- datetime:datetime
-			- int:int
-			- float:float
+the good, the bad, the ugly:
+ :records:
+  - { name: katie, who: mike, start: 2004-08-22, end: too late }
+	- { name: kate, who: andrew, start: 2008-07-15 }
+	- { name: jon, who: rachel, start: 2012-02-15 }
+
 
 view:
 	- by table.name

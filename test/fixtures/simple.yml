@@ -1,0 +1,8 @@
+friends:
+ :records:
+   - { recorded_on: "2011-07-31" }
+	 - { i: 0, name: mike, age: 25 }
+	 - { i: 1, name: jon, age: 25, status: little }
+	 - { i: 2, name: john, age: 25, status: awol }
+	 - { i: 3, name: andrew, age: old }
+	 - { i: 4, name: kate, age: 24, is_a: student }
