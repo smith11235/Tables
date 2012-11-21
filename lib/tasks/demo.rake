@@ -20,15 +20,14 @@ namespace :demo do
 	end
 
 	task :load => :environment do
-		Rake::Task["db:reset"].invoke
 
 		datasets = get_simple_datasets
+
 		datasets.each do |dataset|
-			puts "Name: #{dataset[:name]}" if dataset.has_key?( :name )
-			puts " Records: #{dataset[:records].size}" if( dataset.has_key?( :records ) && dataset[:records].is_a?( Array ) )
 
 			set = DataSet.new( :name => dataset[:name], :source => "rake demo:do" )	
 			set.save! 
+
 			ifield = set.fields.create :name => "i" # for recording record indecies
 
 			dataset[:records].each_with_index do |record_hash,i|

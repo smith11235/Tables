@@ -1,0 +1,9 @@
+  <tr>
+    <td><%= data_set.name %></td>
+    <td><%= data_set.parameters %></td>
+    <td><%= data_set.checksum %></td>
+    <td><%= data_set.source %></td>
+    <td><%= link_to 'Show', data_set %></td>
+    <td><%= link_to 'Edit', edit_data_set_path(data_set) %></td>
+    <td><%= link_to 'Destroy', data_set, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+  </tr>
