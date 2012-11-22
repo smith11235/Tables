@@ -14,6 +14,14 @@ class DataSetsController < ApplicationController
   # GET /data_sets/1.json
   def show
     @data_set = DataSet.find(params[:id])
+		@revisions = []
+		DataSet.where( :name => @data_set.name, :parameters => @data_set.parameters ).each do |revision|
+			if revision.id != @data_set.id
+				@revisions << revision
+			end
+		end
+
+		gon.revision_ids = @revisions.collect {|data_set| data_set.id }
 
     respond_to do |format|
       format.html # show.html.erb

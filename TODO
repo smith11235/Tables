@@ -1,11 +1,9 @@
+data_sets/
+	- group by table.name and table.signature # for a specific table rendering
 
-
-
-view:
-	- by table.name
-	- by table.name and table.signature # for a specific table rendering
-	- by table.name and table.signature and table.created_at =  # for a specific revision
-	- multi-table linking by fields
+data_set/X
+	- show X
+ 	- show revisions of X
 
 api:
 	- for logging: 
@@ -18,5 +16,5 @@ api:
 			end
 
 deployment:
-	gem, expose hook to db:migrate? or expose a start up routine
-	 allow gem to read config dirs for datatype fixtures and other controller logic/special searches 
+	run your own database app
+	load to managed app (for less technical people)

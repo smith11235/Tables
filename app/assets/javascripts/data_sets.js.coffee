@@ -5,4 +5,13 @@ jQuery ->
         $('#data_sets_table').dataTable
           sPaginationType: "full_numbers"
           bJQueryUI: true
-
+jQuery ->
+        $('#data_set_records').dataTable
+          sPaginationType: "full_numbers"
+          bJQueryUI: true
+jQuery ->
+				for i, id of gon.revision_ids
+					console.log id
+					$("#revision_#{id}").dataTable
+						sPaginationType: "full_numbers"
+						bJQueryUI: true

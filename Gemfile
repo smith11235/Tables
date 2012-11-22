@@ -10,6 +10,7 @@ gem 'sqlite3'
 # for table display:
 gem 'jquery-datatables-rails'
 gem 'jquery-ui-rails'
+gem 'gon'
 
 # Gems used only for assets and not required
 # in production environments by default.
