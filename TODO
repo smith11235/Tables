@@ -1,9 +1,27 @@
-data_sets/
-	- group by table.name and table.signature # for a specific table rendering
-
 data_set/X
 	- show X
- 	- show revisions of X
+  - menu-jquery
+	- show 'revision' created_at selector
+		- sets the displayed data in DataTables
+		
+	- show keys:
+	  - set on this data_set/X
+		- set on revisions of data_set/X
+	- create key:
+	  - select 1 - X fields
+	- propogate key:
+		- save on all revisions
+		
+	- show 'changes' between revisions
+		- requires key tracking
+		- new/lost records
+		- new/lost fields
+		- changed fields
+
+Key	name:string data_set:references
+	has_many :key_fields
+KeyField key:references field:references
+
 
 api:
 	- for logging: 
