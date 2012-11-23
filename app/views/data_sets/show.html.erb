@@ -5,7 +5,7 @@
 
 <h3>Revisions</h3>
 <div id="revisions" >
-	<% @revisions.each_with_index do |revision,i| %>
-		<%= render 'full_display', :data_set => @data_set, :revision => revision, :order => i %>
+	<% @revisions.each do |revision| %>
+		<%= render 'full_display', :data_set => @data_set, :revision => revision %>
 	<% end %>
 </div>

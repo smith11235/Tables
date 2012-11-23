@@ -1,4 +1,8 @@
 Tables::Application.routes.draw do
+  resources :key_fields
+
+  resources :keys
+
   get "home/index"
 
   resources :data_sets do

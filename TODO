@@ -1,10 +1,12 @@
 Key	name:string data_set:references
 >> has_many :key_fields
 KeyField key:references field:references
-
+	- show keys:
+		- unique records for each key - how to do this?
+		  - create hash of 'field-field-field...' = record
 	- create key:
-	  - select 1 - X fields for this key
-		- on the table you are currently viewing, not the revision
+		- for each field, how many unique values
+		- select 1 - N fields for the key
 
 	- revision analysis:
 		- select revision
