@@ -10,7 +10,7 @@
 		<li><a href="#revisions">Revisions</a></li>
 	</ul>
 
-	<div id="data_set_field_stats" >
+	<div id="data_set_field_stats" style="height:auto" >
 		<% @data_set.fields.each do |field| %>
 			<h3><%= field.name %></h3>
 			<div id="<%= field.name %>_stats" >
@@ -24,13 +24,29 @@
 		<% end %>
 	</div>
 	<div id="keys" >
-		Coming Soon...
-		<%= "Keys" if @data_set.keys.size > 0  %>
-		<% @data_set.keys.each do |key| %>
-			<%= key.name %>		<br />
-		<% end %>
+		<div id="key_options" >
+			<h3>Current Keys</h3>
+			<div id="current" >
+				<%= "No Keys Defined Yet" if @data_set.keys.size == 0  %>
+				<% @data_set.keys.each do |key| %>
+					<%= key.name %>		<br />
+				<% end %>
+			</div>
+			<h3>Create New Key</h3>
+			<div id="new_key" >
+				<%= form_for( [@data_set, @data_set.keys.build] ) do |f| %>
+					<div class="field">
+						<%= f.label :name %><br />
+						<%= f.text_field :name %>
+					</div>
+					<div class="actions">
+						<%= f.submit %>
+					</div>
+				<% end %>
+			</div>
+		</div>
 	</div>
-	<div id="revisions" >
+	<div id="revisions" style="height:auto" >
 		<% @revisions.each do |revision| %>
 			<%= render 'full_display', :data_set => @data_set, :revision => revision %>
 		<% end %>

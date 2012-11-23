@@ -40,17 +40,9 @@ class KeysController < ApplicationController
   # POST /keys
   # POST /keys.json
   def create
-    @key = Key.new(params[:key])
-
-    respond_to do |format|
-      if @key.save
-        format.html { redirect_to @key, notice: 'Key was successfully created.' }
-        format.json { render json: @key, status: :created, location: @key }
-      else
-        format.html { render action: "new" }
-        format.json { render json: @key.errors, status: :unprocessable_entity }
-      end
-    end
+		@data_set = DataSet.find(params[:data_set_id])
+		@key = @data_set.keys.create(params[:key])
+		redirect_to data_set_path(@post)
   end
 
   # PUT /keys/1

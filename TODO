@@ -1,9 +1,8 @@
-	- show keys:
-		- unique records for each key - how to do this?
-		  - create hash of 'field-field-field...' = record
 	- create key:
-		- for each field, how many unique values
-		- select 1 - N fields for the key
+	  - enter name, create
+	- show keys:
+		- show stats on key
+		- allow modification of fields attached to this key
   - filter on key:
 		- hide records without that field
 	

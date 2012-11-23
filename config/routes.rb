@@ -1,7 +1,4 @@
 Tables::Application.routes.draw do
-  resources :key_fields
-
-  resources :keys
 
   get "home/index"
 
@@ -9,6 +6,9 @@ Tables::Application.routes.draw do
   	resources :fields
   	resources :records do
   		resources :cells
+		end
+  	resources :keys do
+  		resources :key_fields
 		end
 	end
 

@@ -5,6 +5,11 @@ jQuery ->
 				$('#data_set_tabs' ).tabs
 					collapsible: true
 jQuery ->
+				$('#key_options').accordion
+					collapsible: true
+					active: false
+					heightStyle: "content"
+jQuery ->
 				$('#data_set_field_stats').accordion
 					collapsible: true
 					active: false
