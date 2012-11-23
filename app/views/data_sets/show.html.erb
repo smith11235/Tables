@@ -3,30 +3,39 @@
 <p id="notice"><%= notice %></p>
 <%= render 'full_display', :data_set => @data_set %>
 <br />
-<h3>Field Statistics</h3>
+<div id="data_set_tabs">
+	<ul>
+		<li><a href="#data_set_field_stats">Field Stats</a></li>
+		<li><a href="#keys">Keys</a></li>
+		<li><a href="#revisions">Revisions</a></li>
+	</ul>
 
-<div id="data_set_field_stats" >
-	<% @data_set.fields.each do |field| %>
-		<h3><%= field.name %></h3>
-		<div id="<%= field.name %>_stats" >
-			<ul>
-				<li><b>Cells:</b> <%= field.cells.size %></li>
-				<% unique_cell_values = field.cells.map(&:string).uniq %>
-				<li><b># Unique Cells:</b> <%= unique_cell_values.size %></li>
-				<li><b>Unique Values:</b> <%= unique_cell_values %></li>
-			</ul>
-		</div>
-	<% end %>
+	<div id="data_set_field_stats" >
+		<% @data_set.fields.each do |field| %>
+			<h3><%= field.name %></h3>
+			<div id="<%= field.name %>_stats" >
+				<ul>
+					<li><b>Cells:</b> <%= field.cells.size %></li>
+					<% unique_cell_values = field.cells.map(&:string).uniq %>
+					<li><b># Unique Cells:</b> <%= unique_cell_values.size %></li>
+					<li><b>Unique Values:</b> <%= unique_cell_values %></li>
+				</ul>
+			</div>
+		<% end %>
+	</div>
+	<div id="keys" >
+		Coming Soon...
+		<%= "Keys" if @data_set.keys.size > 0  %>
+		<% @data_set.keys.each do |key| %>
+			<%= key.name %>		<br />
+		<% end %>
+	</div>
+	<div id="revisions" >
+		<% @revisions.each do |revision| %>
+			<%= render 'full_display', :data_set => @data_set, :revision => revision %>
+		<% end %>
+	</div>
+
 </div>
 
-<%= "Keys" if @data_set.keys.size > 0  %>
-<% @data_set.keys.each do |key| %>
-	<%= key.name %>		<br />
-<% end %>
 
-<h3>Revisions</h3>
-<div id="revisions" >
-	<% @revisions.each do |revision| %>
-		<%= render 'full_display', :data_set => @data_set, :revision => revision %>
-	<% end %>
-</div>
