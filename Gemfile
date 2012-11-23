@@ -11,6 +11,7 @@ gem 'sqlite3'
 gem 'jquery-datatables-rails'
 gem 'jquery-ui-rails'
 gem 'gon'
+gem 'simple_form'
 
 # Gems used only for assets and not required
 # in production environments by default.

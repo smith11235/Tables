@@ -1,12 +1,15 @@
-Key	name:string data_set:references
->> has_many :key_fields
-KeyField key:references field:references
 	- show keys:
 		- unique records for each key - how to do this?
 		  - create hash of 'field-field-field...' = record
 	- create key:
 		- for each field, how many unique values
 		- select 1 - N fields for the key
+  - filter on key:
+		- hide records without that field
+	
+	- div resizing:
+		- in tab's, the revision section:
+			- resize motherfucker
 
 	- revision analysis:
 		- select revision
