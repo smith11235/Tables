@@ -11,7 +11,7 @@
 <% data_table_id = "data_set_#{primary.id}" %>
 <% @gon.data_table_ids ||= Array.new %>
 <% @gon.data_table_ids << data_table_id %>
-<div>
+<div style="height:auto" >
 	<%= link_to 'Show Revision', data_set_url( primary ) unless revision.nil? %>
 	<table id="<%= data_table_id %>" class="display" >
 		<thead>
