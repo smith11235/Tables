@@ -17,11 +17,13 @@ class Key < ActiveRecord::Base
 					has_all_fields = false 
 				else
 					# build pk value
-					pk_value << "[#{cell.string}]"
+					pk_value << "[#{key_field.field.name}:#{cell.string}]"
 				end
 			end
-			records[ pk_value ] ||= Array.new
-			records[ pk_value ] << record
+			if has_all_fields
+				records[ pk_value ] ||= Array.new
+				records[ pk_value ] << record 
+			end
 		end
 		return records
 	end

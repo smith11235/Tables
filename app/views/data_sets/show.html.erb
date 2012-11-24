@@ -31,14 +31,15 @@
 				<% @data_set.keys.each do |key| %>
 					<h3><%= key.name %></h3>
 					<div id="<%= key.name %>_key_stats" style="height:auto;min-height:100px" >
-						Records: <%= key.get_records.size %> <br />
-						Fields:
-						<ul>
-							<% key.key_fields.each do |key_field| %>
-								<li><%= key_field.field.name %></li>
-							<% end %>
-						</ul>
-
+						<% key_records = key.get_records %> <br />
+						<% field_names = key.key_fields.collect { |key_field| key_field.field.name } %>
+						Fields: <%= field_names.join(",") %> <br />
+						Unique Record Keys: <%= key_records.size %> <br />
+						Duplicate Keys: <br />
+						<% key_records.each do |key_value,dups| %> 
+							<% next if dups.size == 1 %>
+							<%= "#{key_value}: #{dups.size} records" %> <br />
+						<% end %>
 					</div>
 				<% end %>
 			</div>
