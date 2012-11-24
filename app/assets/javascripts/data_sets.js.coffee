@@ -12,6 +12,11 @@ jQuery ->
 					active: false
 					heightStyle: "content"
 jQuery ->
+				$('#current_keys').accordion
+					collapsible: true
+					active: false
+					heightStyle: "content"
+jQuery ->
 				$('#data_set_field_stats').accordion
 					collapsible: true
 					active: false

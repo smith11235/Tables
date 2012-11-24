@@ -1,8 +1,7 @@
-	- create key:
-	  - enter name, create
 	- show keys:
 		- show stats on key
-		- allow modification of fields attached to this key
+		- delete key
+
   - filter on key:
 		- hide records without that field
 	
@@ -22,6 +21,8 @@
 				- new field: cell is green
 				- deleted field: cell is red
 				- changed value: cell is yellow
+	- data set joins:
+		- using key
 
 api:
   - gem

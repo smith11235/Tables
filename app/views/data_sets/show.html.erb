@@ -26,10 +26,19 @@
 	<div id="keys" style="height:auto;min-height:100px"  >
 		<div id="key_options" style="height:auto;min-height:100px" >
 			<h3>Current Keys</h3>
-			<div id="current" style="height:auto;min-height:100px" >
+			<div id="current_keys" style="height:auto;min-height:100px" >
 				<%= "No Keys Defined Yet" if @data_set.keys.size == 0  %>
 				<% @data_set.keys.each do |key| %>
-					Key: <%= "#{key.name} #{key.key_fields.size}" %>		<br />
+					<h3><%= key.name %></h3>
+					<div id="<%= key.name %>_key_stats" style="height:auto;min-height:100px" >
+						Fields:
+						<ul>
+							<% key.key_fields.each do |key_field| %>
+								<li><%= key_field.field.name %></li>
+							<% end %>
+						</ul>
+
+					</div>
 				<% end %>
 			</div>
 			<h3>Create New Key</h3>
@@ -42,8 +51,8 @@
 					<ul>
 						<% @data_set.fields.each do |field| %>
 							<li>
-								<%= check_box_tag 'field_ids[]', field.id -%>
-								<%= field.name -%>
+							<%= check_box_tag 'field_ids[]', field.id -%>
+							<%= field.name -%>
 							</li>
 						<% end %>
 					</ul>
