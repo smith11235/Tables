@@ -29,7 +29,7 @@
 			<div id="current" style="height:auto;min-height:100px" >
 				<%= "No Keys Defined Yet" if @data_set.keys.size == 0  %>
 				<% @data_set.keys.each do |key| %>
-					<%= key.name %>		<br />
+					Key: <%= "#{key.name} #{key.key_fields.size}" %>		<br />
 				<% end %>
 			</div>
 			<h3>Create New Key</h3>
@@ -39,6 +39,14 @@
 						<%= f.label :name %><br />
 						<%= f.text_field :name %>
 					</div>
+					<ul>
+						<% @data_set.fields.each do |field| %>
+							<li>
+								<%= check_box_tag 'field_ids[]', field.id -%>
+								<%= field.name -%>
+							</li>
+						<% end %>
+					</ul>
 					<div class="actions">
 						<%= f.submit %>
 					</div>

@@ -1,4 +1,19 @@
 class KeysController < ApplicationController
+
+  # POST /keys
+  # POST /keys.json
+  def create
+		@data_set = DataSet.find(params[:data_set_id])
+		@key = @data_set.keys.create(params[:key])
+		params[:field_ids].each do |field_id|
+			field = @data_set.fields.where( :id => field_id )
+			key_field = @key.key_fields.create 
+			key_field.field_id = field_id
+			key_field.save!
+		end
+		redirect_to data_set_path(@data_set)
+  end
+
   # GET /keys
   # GET /keys.json
   def index
@@ -37,13 +52,6 @@ class KeysController < ApplicationController
     @key = Key.find(params[:id])
   end
 
-  # POST /keys
-  # POST /keys.json
-  def create
-		@data_set = DataSet.find(params[:data_set_id])
-		@key = @data_set.keys.create(params[:key])
-		redirect_to data_set_path(@data_set)
-  end
 
   # PUT /keys/1
   # PUT /keys/1.json
