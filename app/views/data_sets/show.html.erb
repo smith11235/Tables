@@ -3,7 +3,7 @@
 <p id="notice"><%= notice %></p>
 <%= render 'full_display', :data_set => @data_set %>
 <br />
-<div id="data_set_tabs">
+<div id="data_set_tabs" style="height:auto;min-height:100px" >
 	<ul>
 		<li><a href="#data_set_field_stats">Field Stats</a></li>
 		<li><a href="#keys">Keys</a></li>
@@ -23,17 +23,17 @@
 			</div>
 		<% end %>
 	</div>
-	<div id="keys" >
-		<div id="key_options" >
+	<div id="keys" style="height:auto;min-height:100px"  >
+		<div id="key_options" style="height:auto;min-height:100px" >
 			<h3>Current Keys</h3>
-			<div id="current" >
+			<div id="current" style="height:auto;min-height:100px" >
 				<%= "No Keys Defined Yet" if @data_set.keys.size == 0  %>
 				<% @data_set.keys.each do |key| %>
 					<%= key.name %>		<br />
 				<% end %>
 			</div>
 			<h3>Create New Key</h3>
-			<div id="new_key" >
+			<div id="new_key" style="height:auto;min-height:100px" >
 				<%= form_for( [@data_set, @data_set.keys.build] ) do |f| %>
 					<div class="field">
 						<%= f.label :name %><br />

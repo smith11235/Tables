@@ -42,7 +42,7 @@ class KeysController < ApplicationController
   def create
 		@data_set = DataSet.find(params[:data_set_id])
 		@key = @data_set.keys.create(params[:key])
-		redirect_to data_set_path(@post)
+		redirect_to data_set_path(@data_set)
   end
 
   # PUT /keys/1

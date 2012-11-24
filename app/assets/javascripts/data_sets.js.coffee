@@ -1,9 +1,11 @@
 # Place all the behaviors and hooks related to the matching controller here.
 # All this logic will automatically be available in application.js.
 # You can use CoffeeScript in this file: http://jashkenas.github.com/coffee-script/
+
 jQuery ->
 				$('#data_set_tabs' ).tabs
 					collapsible: true
+					heightStyle: "content"
 jQuery ->
 				$('#key_options').accordion
 					collapsible: true
