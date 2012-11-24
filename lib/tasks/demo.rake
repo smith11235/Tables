@@ -1,24 +1,5 @@
 namespace :demo do
 
-	task :index,[:search] => :environment do |t,args|
-		args.with_defaults :search => "*"
-
-		puts "Datasets: #{DataSet.count}"
-		# this command taken from: 
-		# http://stackoverflow.com/questions/8369812/rails-how-can-i-get-unique-values-from-column 
-		unique_names = DataSet.select( :name ).uniq
-		unique_names.each do |desired_set|
-			subsets = DataSet.where( :name => desired_set.name )
-			puts " - #{desired_set.name}: iterations #{subsets.size}"
-			subsets.each do |set|
-				puts "   - { :created_at => #{set[:created_at]},"
-			  puts "       :record_count => #{set.records.size},"
-				puts "       :fields => #{set.fields.size}"
-				puts "     }"
-			end
-		end
-	end
-
 	task :load => :environment do
 
 		datasets = get_simple_datasets
