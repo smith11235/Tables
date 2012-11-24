@@ -31,6 +31,7 @@
 				<% @data_set.keys.each do |key| %>
 					<h3><%= key.name %></h3>
 					<div id="<%= key.name %>_key_stats" style="height:auto;min-height:100px" >
+						Records: <%= key.get_records.size %> <br />
 						Fields:
 						<ul>
 							<% key.key_fields.each do |key_field| %>
