@@ -5,18 +5,12 @@ jQuery ->
 				for ui_type, instances of gon.jquery_uis
 					switch ui_type
 						when 'tabs'
-							for i, id of instances
-								$("##{id}" ).tabs
-									collapsible: true
-									heightStyle: "content"
+							for id,settings of instances
+								console.log settings
+								$("##{id}" ).tabs( settings )
 						when 'accordion'
-							for i, id of instances
-								$("##{id}" ).accordion
-									collapsible: true
-									heightStyle: "content"
-									active: false
+							for id,settings of instances
+								$("##{id}" ).accordion( settings )
 						when 'data_table'
-							for i, id of instances
-        				$("##{id}").dataTable
-          				sPaginationType: "full_numbers"
-          				bJQueryUI: true
+							for id,settings of instances
+        				$("##{id}").dataTable( settings )

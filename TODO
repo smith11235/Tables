@@ -1,11 +1,7 @@
-- gon.jquery_uis = Hash.new
-	- gon.jquery_uis[ :accordion ].each do |id,settings|
-			$("##{id}").accordion
-				settings
-
 - key display:
 	- key.get_records
 		- records, invalid_records
+
 	- div:
 		- current keys:
 			- records
