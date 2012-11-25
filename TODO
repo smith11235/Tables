@@ -1,4 +1,6 @@
 - key display:
+ 	- create new
+	  - refreshes with current_keys[active=>index]
 	- key.get_records
 		- records, invalid_records
 

@@ -3,7 +3,10 @@
 <p id="notice"><%= notice %></p>
 <%= render 'full_display', :data_set => @data_set %>
 <br />
-<div <%= @jquery.set_id( "data_set_tabs", :tabs  ) %> style="height:auto;min-height:100px" >
+
+<% tab_index ||= 0 # this can be set by controllers to open a specific view %>
+<%= tab_index %> <br />
+<div <%= @jquery.set_id( "data_set_tabs", :tabs, 'active' => tab_index ) %> style="height:auto;min-height:100px" >
 	<ul>
 		<li><a href="#data_set_field_stats">Field Stats</a></li>
 		<li><a href="#keys">Keys</a></li>

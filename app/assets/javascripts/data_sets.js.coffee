@@ -6,7 +6,6 @@ jQuery ->
 					switch ui_type
 						when 'tabs'
 							for id,settings of instances
-								console.log settings
 								$("##{id}" ).tabs( settings )
 						when 'accordion'
 							for id,settings of instances
