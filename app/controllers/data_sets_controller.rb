@@ -1,22 +1,27 @@
 class DataSetsController < ApplicationController
-	# GET /data_sets
-	# GET /data_sets.json
-	def index
-		@data_sets = DataSet.all
 
-		respond_to do |format|
-			format.html # index.html.erb
-			format.json { render json: @data_sets }
+	class JQueryUIsTracker
+		def initialize( gon )
+			@gon = gon
+			@gon.jquery_uis = Hash.new
+		end
+
+		def set_id( id, type, settings = {} )
+			@gon.jquery_uis[ type ] ||= Array.new
+			@gon.jquery_uis[ type ] << id
+			return "id=#{id}"
 		end
 	end
 
 	# GET /data_sets/1
 	# GET /data_sets/1.json
 	def show
-		@gon = gon # expose this to helpers
+		@jquery = JQueryUIsTracker.new( gon )
+
+		# load the target dataset
 		@data_set = DataSet.find(params[:id])
 
-		# get other revisions fo this table
+		# get the other revisions of this table
 		@revisions = []
 		DataSet.where( :name => @data_set.name, :parameters => @data_set.parameters ).order( "created_at DESC" ).each do |revision|
 			if revision.id != @data_set.id
@@ -29,6 +34,19 @@ class DataSetsController < ApplicationController
 			format.json { render json: @data_set }
 		end
 	end
+
+	# GET /data_sets
+	# GET /data_sets.json
+	def index
+		@jquery = JQueryUIsTracker.new( gon )
+		@data_sets = DataSet.all
+
+		respond_to do |format|
+			format.html # index.html.erb
+			format.json { render json: @data_sets }
+		end
+	end
+
 
 	# GET /data_sets/new
 	# GET /data_sets/new.json

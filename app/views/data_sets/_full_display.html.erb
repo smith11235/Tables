@@ -8,12 +8,9 @@
 	<h3>Revision: <%= revision_title %></h3> 
 <% end %>
 
-<% data_table_id = "data_set_#{primary.id}" %>
-<% @gon.data_table_ids ||= Array.new %>
-<% @gon.data_table_ids << data_table_id %>
 <div style="height:auto;min-height:250px" >
 	<%= link_to 'Show Revision', data_set_url( primary ) unless revision.nil? %>
-	<table id="<%= data_table_id %>" class="display" >
+	<table <%= @jquery.set_id( "data_set_#{primary.id}", :data_table ) %> class="display" >
 		<thead>
 			<tr>
 				<% primary.fields.each do |field| %>

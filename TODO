@@ -1,41 +1,69 @@
-	- show keys:
-		- show stats on key
-		- delete key
+- gon.jquery_uis = Hash.new
+	- gon.jquery_uis[ :accordion ].each do |id,settings|
+			$("##{id}").accordion
+				settings
 
-  - filter on key:
-		- hide records without that field
-	
-	- div resizing:
-		- in tab's, the revision section:
-			- resize motherfucker
+- key display:
+	- key.get_records
+		- records, invalid_records
+	- div:
+		- current keys:
+			- records
+				- gon.accordions[ {key}_records_table ] = settings
+			- non records
+				- gon.accordions[ {key}_non_records_table ] = settings
 
-	- revision analysis:
-		- select revision
-		- show key-analysis:
-			- for each key on dataset or revision
-				- how many record matchups (domain composition integrity)
-		- modify data_table display
-			- new records: green 
-			- lost records: add to datatable, colored red
-			- changed records:
-				- new field: cell is green
-				- deleted field: cell is red
-				- changed value: cell is yellow
-	- data set joins:
-		- using key
+- ajax requests:
+	- each tab/accordian refresh/opening should generate content
+
+- data set joins: # replicate mysql search + join functionality
+	- select a dataset
+	- select another dataset (can be a self join)
+	- select a key on each
+	- select fields to link between keys
+		- select datatypes of fields
+		- select comparisons/limits
+			- :name != jon, :i > 4
+	- joins are models
+		- save them as you build
+		- nothing ever lost
+		- users can publish their 'joins'
+			- to blogs or other stats users
+
+- revision analysis:
+	- select revision
+	- show key-analysis:
+		- for each key on dataset or revision
+			- how many record matchups (domain composition integrity)
+	- modify data_table display
+		- new records: green 
+		- lost records: add to datatable, colored red
+		- changed records:
+			- new field: cell is green
+			- deleted field: cell is red
+			- changed value: cell is yellow
+
+- div resizing:
+	- in tab's, the revision section:
+		- resize motherfucker
+
 
 api:
   - gem
-		- plug into your own database 
-		- use a universal public database
-			- programmatic uploads
-			- web file parser/loader
+		- privacy:
+			- public site + public database
+			- public site pointing to private database
+			- private site pointing to private database
+
 
 	- for logging: 
 	  - $table = Table.new( "stats" )
+		- $table = Table.head( "stats" ) # revision( "stats", :created_at => )
 	  - $table = Table.new( "stats", "id=5" ) # with parameters
 		- $table = Table.new( "stats", "id=5", "pro-football-reference.com/stats/5/" )
 		- $table.log( :notice => "Crawler starting load", :job_id => "18383" )
 		- my_hash.keys.each_with_index do |key,i|
 				$table.log( :i => i, :key => key, :value => my_hash[key] )
 			end
+	- for data usage:
+		- pull data out, process it, then relog it
