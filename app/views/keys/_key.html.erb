@@ -1,0 +1,14 @@
+					<h3><%= key.name %></h3>
+					<div id="<%= key.name %>_key_stats" style="height:auto;min-height:100px" >
+						<% key_records = key.get_records %> <br />
+						<% field_names = key.key_fields.collect { |key_field| key_field.field.name } %>
+						Fields: <%= field_names.join(",") %> <br />
+						<div id="<%= "#{key.name}_accordian" %>" >
+							Unique Record Keys: <%= key_records.size %> <br />
+							Duplicate Keys: <br />
+							<% key_records.each do |key_value,dups| %> 
+								<% next if dups.size == 1 %>
+								<%= "#{key_value}: #{dups.size} records" %> <br />
+							<% end %>
+						</div>
+					</div>
