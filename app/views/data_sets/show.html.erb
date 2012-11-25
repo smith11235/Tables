@@ -22,35 +22,23 @@
 			</div>
 		<% end %>
 	</div>
+
 	<div id="keys" style="height:auto;min-height:100px"  >
 		<div <%= @jquery.set_id( "key_options", :accordion  ) %> style="height:auto;min-height:100px" >
+
 			<h3>Current Keys</h3>
 			<div <%= @jquery.set_id( "current_keys", :accordion  ) %> style="height:auto;min-height:100px" >
 				<%= "No Keys Defined Yet" if @data_set.keys.size == 0  %>
 				<%= render @data_set.keys %>
 			</div>
-			<h3>Create New Key (create partial)</h3>
+
+			<h3>Create New Key</h3>
 			<div id="new_key" style="height:auto;min-height:100px" >
-				<%= form_for( [@data_set, @data_set.keys.build] ) do |f| %>
-					<div class="field">
-						<%= f.label :name %><br />
-						<%= f.text_field :name %>
-					</div>
-					<ul>
-						<% @data_set.fields.each do |field| %>
-							<li>
-							<%= check_box_tag 'field_ids[]', field.id -%>
-							<%= field.name -%>
-							</li>
-						<% end %>
-					</ul>
-					<div class="actions">
-						<%= f.submit %>
-					</div>
-				<% end %>
+				<%= render 'new_key', :data_set => @data_set %>
 			</div>
 		</div>
 	</div>
+
 	<div <%= @jquery.set_id( "revisions", :accordion ) %> style="height:auto" >
 		<% @revisions.each do |revision| %>
 			<%= render 'full_display', :data_set => @data_set, :revision => revision %>
@@ -58,5 +46,3 @@
 	</div>
 
 </div>
-
-
