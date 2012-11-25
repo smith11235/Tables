@@ -10,7 +10,10 @@
 
 <div style="height:auto;min-height:250px" >
 	<%= link_to 'Show Revision', data_set_url( primary ) unless revision.nil? %>
-	<table <%= @jquery.set_id( "data_set_#{primary.id}", :data_table ) %> class="display" >
+	<% settings = Hash.new %>
+	<% settings = { 'bProcessing' => true, 'bServerSide' => true, 'sAjaxSource' => "#data_set_#{primary.id}.data('source')" } if revision.nil? %>
+
+	<table <%= "data-source=#{data_set_url(data_set, :format => "json")}" if revision.nil? %>  <%= @jquery.set_id( "data_set_#{primary.id}", :data_table, settings ) %> class="display" >
 		<thead>
 			<tr>
 				<% primary.fields.each do |field| %>

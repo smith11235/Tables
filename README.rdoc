@@ -6,7 +6,7 @@
 	in a trivialized manner for fast prototyping and ease of use by non-technical 
 	people.
 	
-	To load your data:
+== To load your data
 		- manual: by hand (on your phone), aka: keeping a todo list
 		- browser upload: select a formatted file to load records from
 			- you could be a grad researcher, not a software developer
@@ -14,14 +14,13 @@
 			- scheduled: add a schedule for polling the url
 		- programmatically: through our logging api from your code base
 	
-	To secure your data:
+== To secure your data
 		- rely on our user management
 			- load data through our web site to our databases
 		- rely on our site, but use your database
 		- rely on your own clone of our site and your own database
 
-	To understand your data:
-		- unperfect domains of data
+== Non Perfect Data
 			- prototyping:
 				- the data is of questionable quality
 				- dont deal with mysql's pickness until you are ready
@@ -32,7 +31,8 @@
 			- revisioned:
 				- see how each set of data (think: a table in mysql) evolves
 				- don't lose old records if they are accidentally deleted in updates
-		- shapes of the data
+
+== Shape of the Data
 			- standard statistical information displays
 				- is a field generally unique?
 					- the price of a product
@@ -42,7 +42,7 @@
 						- 10 distinct values across 2000 products
 					- the distribution of records across this flag
 
-	View Building (in browswer):
+== View Building (in browswer)
 		- create filters and indexes on a data set
 		 	- keys:
 				- define the field and value ranges you care about 
@@ -54,7 +54,7 @@
 		- everything is mapped to a url so you can share and re-visit
 		- meant to be useable by a non-technical user
 	
-	Publishing:
+== Publishing
 		- data set revision validation
 			- statistical proofing based on rules to ensure data quality before release
 		- publish reports to clients under your name
@@ -64,7 +64,3 @@
 			- from your Keys and Views
 				- publish an optimized rails application
 					- with a schema and views defined explicitly for your data domain
-	
-			
-
-	

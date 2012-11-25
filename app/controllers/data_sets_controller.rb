@@ -40,7 +40,7 @@ class DataSetsController < ApplicationController
 
 		respond_to do |format|
 			format.html # show.html.erb
-			format.json { render json: @data_set }
+			format.json { render json: DataSetTable.new(view_context,@data_set) }
 		end
 	end
 
