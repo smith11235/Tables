@@ -1,18 +1,19 @@
-- key display:
- 	- create new: refresh with view of key
-			- app/views/data_sets/show.html.erb
-			  - tab_index not selecting tab correctly
-	- key.get_records
-		- records, invalid_records
-	- div: accordian
-		- current keys:
-			- records
-				- gon.accordions[ {key}_records_table ] = settings
-			- non records
-				- gon.accordions[ {key}_non_records_table ] = settings
+- in progress:
+	- key rendering:
+		- key.get_records should add two special fields
+			- otherwise return a 'data_set' for display
+			- somehow partitioned from data fields (meta fields)
+	    - duplicate: how many times this records key exists
+			- valid: does this record even have the keys required fields
 
-- ajax requests:
-	- each tab/accordian refresh/opening should generate content on the fly
+ 	- key: create new: 
+		- refresh with view of key
+			- app/views/data_sets/show.html.erb: tab_index not working
+			- reload records display
+	- duplicate key distribution chart
+
+- jquery ajax refresh:
+	- reload displays from settings picked in a form
 
 - data set joins: # replicate mysql search + join functionality
 	- select a dataset

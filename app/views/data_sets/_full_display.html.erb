@@ -1,18 +1,30 @@
-<% revision ||= nil %>
+<% revision ||= nil # optionally support key filtering %>
+<% key ||= nil # optionally support key filtering %>
+<% valid ||= true # when conditions are passed, do we return matching or non matching %>
+
 <% primary = revision || data_set %>
-<% if revision.nil? %>
+<% if revision.nil? && key.nil? %>
 	<b>Name: </b><%= "#{data_set.name} #{data_set.parameters.nil? ? '' : "<b>Parameters:</b> #{data_set.parameters}" }" %><br />
 	<b>Created At:</b> <%= data_set.created_at %><br />
-<% else %>
+<% elsif ! key.nil? # no title%>
+
+<% else # revision %>
 	<% revision_title = "#{revision.created_at} - #{revision.created_at < data_set.created_at ? 'Earlier' : 'Later'}" %> 
 	<h3>Revision: <%= revision_title %></h3> 
 <% end %>
 
+
 <div style="height:auto;min-height:250px" >
-	<%= link_to 'Show Revision', data_set_url( primary ) unless revision.nil? %>
 	<% settings = { 'bProcessing' => true, 'bServerSide' => true, 'sAjaxSource' => "#data_set_#{primary.id}.data('source')" } %>
 
-	<table <%= "data-source=#{data_set_url(data_set, :format => "json")}" if revision.nil? %>  <%= @jquery.set_id( "data_set_#{primary.id}", :data_table, settings ) %> class="display" >
+	<% source_url = nil %>
+	<% if key.nil? # full table display %>
+		<% source_url = data_set_url( primary, :format => "json" ) %>
+	<% else %>
+		<% source_url = data_set_key_url( primary, key, :format => "json", :valid => valid ) %>
+	<% end %>
+
+	<table <%= "data-source=#{source_url}" %>  <%= @jquery.set_id( "data_set_#{primary.id}", :data_table, settings ) %> class="display" >
 		<thead>
 			<tr>
 				<% primary.fields.each do |field| %>
