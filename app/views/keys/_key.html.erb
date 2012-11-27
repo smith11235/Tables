@@ -1,27 +1,23 @@
 <h3><%= key.name %></h3>
-<div id="<%= key.name %>_key_stats" style="height:auto;min-height:100px" >
-	<% key_records, key_non_records = key.get_records %> <br />
-	<% field_names = key.key_fields.collect { |key_field| key_field.field.name } %>
-	Fields: <%= field_names.join(",") %> <br />
-	<div id="<%= "#{key.name}_accordian" %>" >
-		Unique Record Keys: <%= key_records.size %> <br />
-		Duplicate Keys: <br />
-		<% key_records.each do |key_value,dups| %> 
-			<% next if dups.size == 1 %>
-			<%= "#{key_value}: #{dups.size} records" %> <br />
-		<% end %>
-	</div>
+<div id="<%= key.name %>" style="height:auto;min-height:100px" >
 
-	<div <%= @jquery.set_id( "#{key.name}_records", :accordion  ) %> style="height:auto;min-height:100px" >
-		<h3>Valid Records</h3>
-		<div style="height:auto;min-height:100px" >
-			<% # @jquery.set_id( "#{key.name}_valid_records", :data_table  ) %>
-			Call full_display with key_id = key.id, :valid_records => true
+	<div <%= @jquery.set_id( "#{key.name}_displays", :accordion ) %>  style="height:auto;min-height:100px">
+		<h3>Stats:</h3>
+		<div id="<%= "#{key.name}_stats" %>"  style="height:auto;min-height:100px">
+			<% key_records, key_non_records = key.get_records %> <br />
+			<% field_names = key.key_fields.collect { |key_field| key_field.field.name } %>
+			Fields: <%= field_names.join(",") %> <br />
+			Unique Record Keys: <%= key_records.size %> <br />
+			Duplicate Keys: <br />
+			<% key_records.each do |key_value,dups| %> 
+				<% next if dups.size == 1 %>
+				<%= "#{key_value}: #{dups.size} records" %> <br />
+			<% end %>
 		</div>
-		<h3>Invalid Records</h3>
-		<div style="height:auto;min-height:100px" >
- 			<% # @jquery.set_id( "#{key.name}_valid_records", :data_table  )%>
-			Call full_display with key_id = key.id, :valid_records => false
+		<h3>Valid Records</h3>
+		<div style="height:auto;min-height:100px"  style="height:auto;min-height:100px">
+			Create datatable structure with @data_set.fields and source=data_set_key_url 
+			<% # @jquery.set_id( "#{key.name}_valid_records", :data_table  ) %>
 		</div>
 	</div>
 </div>
