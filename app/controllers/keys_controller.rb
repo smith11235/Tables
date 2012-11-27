@@ -1,4 +1,5 @@
 class KeysController < ApplicationController
+	$key_index = 1 # what index in the main tab, todo: improve this
 
 	# POST /keys
 	# POST /keys.json
@@ -15,9 +16,17 @@ class KeysController < ApplicationController
 				key_field.save!
 			end
 			@key.set_records # create a key_record's index
-			# todo: get the below arguments to work
-			redirect_to( data_set_path(@data_set), :tab_index => 1, :key_id => @key.id )
+
+			redirect_to( data_set_path(@data_set), :tab_index => $key_index, :key_id => @key.id )
 		end
+	end
+	
+	def find_records
+		@data_set = DataSet.find(params[:data_set_id])
+		@key = @data_set.keys.find(params[:id])
+		@key.key_records.destroy_all # wipe out the current mappings
+		@key.set_records # rebuild mappings
+		redirect_to( data_set_path(@key.data_set), :tab_index => $key_index, :key_id => @key.id )
 	end
 
 	# GET /keys
@@ -38,7 +47,7 @@ class KeysController < ApplicationController
 
 		respond_to do |format|
 			format.html # show.html.erb
-			format.json { render json: @key }
+			format.json { render json: KeyTable.new(view_context, @key) }
 		end
 	end
 

@@ -2,24 +2,29 @@
 <div id="<%= key.name %>" style="height:auto;min-height:100px" >
 
 	<div <%= @jquery.set_id( "#{key.name}_displays", :accordion ) %>  style="height:auto;min-height:100px">
+		<h3>Options</h3>
+		<div>
+			<%= link_to 'Rebuild Index', find_records_data_set_key_url( key.data_set, key ) %>
+		</div>
+
 		<h3>Stats:</h3>
 		<div id="<%= "#{key.name}_stats" %>"  style="height:auto;min-height:100px">
 			Fields: <%= key.unique_field_names.join( "," ) %><br />
-			Unique Records: <%= key.records.size %> <Rebuild Link><br />
+			Unique Records: <%= key.records.size %><br />
 			Unique Keys: <br />
 			Duplicate key distribution <br />
 		</div>
+
 		<h3>Valid Records</h3>
 		<div style="height:auto;min-height:100px"  style="height:auto;min-height:100px">
-			Create datatable structure with @data_set.fields and source=data_set_key_url 
 			<% table_id = "key_#{key.id}" %>
-			<% ajax_url = data_set_key_url( key.data_set, key, :format => "json" ) %>
-			<% settings = { 'bProcessing' => true, 'bServerSide' => true, 'sAjaxSource' => "##{table_id}.data('source')" } %>
+			<% ajax_url = data_set_key_url( key, :format => "json" ) %>
+			<% settings = { 'bProcessing' => true, 'bServerSide' => true, 'sAjaxSource' => "#{table_id}.data('source')" } %>
 
-			<table <%= "data-source=#{ajax_url}" %>  <%= @jquery.set_id( "#{table_id}", :data_table, settings ) %> class="display" >
+			<table <%= "#{@jquery.set_id( table_id, :data_table, settings )} data-source=#{ajax_url}" %> class="display" >
 				<thead>
 					<tr>
-						<% key.fields.each do |field| %>
+						<% key.data_set.fields.each do |field| %>
 							<th><%= field.name %></th>
 						<% end %>
 					</tr>

@@ -1,27 +1,7 @@
 - in progress:
-	- generate scaffold KeyRecord key:references record:references
-
-	- keys_controller.rb
-		- edit:
-			- build new KeyRecord's
-	
-	- KeyRecords
-		- for each key, in app/views/keys/_key.html.rb
-			
-			- <div set_id>
-				- <h3>key.name: key.key_records.size</h3>
-				- <div>
-				- <h3>non key.name: key.key_records.size</h3>
-				- <div>
-
-
-	- key rendering:
-		- key.get_records should add two special fields
-			- otherwise return a 'data_set' for display
-			- somehow partitioned from data fields (meta fields)
-	    - duplicate: how many times this records key exists
-			- valid: does this record even have the keys required fields
-
+	- problem:
+		- records display for keys, call is going formated wrong from dataset
+		- need to load dataset from a javascript function instead
 
  	- key: create new: 
 		- refresh with view of key
@@ -29,8 +9,6 @@
 			- reload records display
 	- duplicate key distribution chart
 
-- jquery ajax refresh:
-	- reload displays from settings picked in a form
 
 - data set joins: # replicate mysql search + join functionality
 	- select a dataset

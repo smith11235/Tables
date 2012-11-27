@@ -10,6 +10,9 @@ Tables::Application.routes.draw do
   		resources :cells
 		end
   	resources :keys do
+			member do 
+				get 'find_records'
+			end
   		resources :key_fields
 		end
 	end
