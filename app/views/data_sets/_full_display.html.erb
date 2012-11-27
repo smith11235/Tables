@@ -17,13 +17,7 @@
 <div style="height:auto;min-height:250px" >
 	<% settings = { 'bProcessing' => true, 'bServerSide' => true, 'sAjaxSource' => "#data_set_#{primary.id}.data('source')" } %>
 
-	<% source_url = nil %>
-	<% if key.nil? # full table display %>
-		<% source_url = data_set_url( primary, :format => "json" ) %>
-	<% else %>
-		<% source_url = data_set_key_url( primary, key, :format => "json", :valid => valid ) %>
-	<% end %>
-
+	<% source_url = data_set_url( primary, :format => "json" ) %>
 	<table <%= "data-source=#{source_url}" %>  <%= @jquery.set_id( "data_set_#{primary.id}", :data_table, settings ) %> class="display" >
 		<thead>
 			<tr>

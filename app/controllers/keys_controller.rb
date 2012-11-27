@@ -14,6 +14,8 @@ class KeysController < ApplicationController
 				key_field.field_id = field_id
 				key_field.save!
 			end
+			@key.set_records # create a key_record's index
+			# todo: get the below arguments to work
 			redirect_to( data_set_path(@data_set), :tab_index => 1, :key_id => @key.id )
 		end
 	end

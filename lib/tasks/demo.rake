@@ -1,6 +1,7 @@
 namespace :demo do
 
 	task :load => :environment do
+		Rake::Task[ "db:reset" ].invoke
 
 		datasets = get_simple_datasets
 

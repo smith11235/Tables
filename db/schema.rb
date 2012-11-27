@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20121123014804) do
+ActiveRecord::Schema.define(:version => 20121127022058) do
 
   create_table "cells", :force => true do |t|
     t.integer  "record_id"
@@ -54,6 +54,16 @@ ActiveRecord::Schema.define(:version => 20121123014804) do
 
   add_index "key_fields", ["field_id"], :name => "index_key_fields_on_field_id"
   add_index "key_fields", ["key_id"], :name => "index_key_fields_on_key_id"
+
+  create_table "key_records", :force => true do |t|
+    t.integer  "key_id"
+    t.integer  "record_id"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
+  add_index "key_records", ["key_id"], :name => "index_key_records_on_key_id"
+  add_index "key_records", ["record_id"], :name => "index_key_records_on_record_id"
 
   create_table "keys", :force => true do |t|
     t.string   "name"

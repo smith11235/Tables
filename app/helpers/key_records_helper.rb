@@ -1,0 +1,2 @@
+module KeyRecordsHelper
+end

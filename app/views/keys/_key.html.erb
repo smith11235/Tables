@@ -4,20 +4,29 @@
 	<div <%= @jquery.set_id( "#{key.name}_displays", :accordion ) %>  style="height:auto;min-height:100px">
 		<h3>Stats:</h3>
 		<div id="<%= "#{key.name}_stats" %>"  style="height:auto;min-height:100px">
-			<% key_records, key_non_records = key.get_records %> <br />
-			<% field_names = key.key_fields.collect { |key_field| key_field.field.name } %>
-			Fields: <%= field_names.join(",") %> <br />
-			Unique Record Keys: <%= key_records.size %> <br />
-			Duplicate Keys: <br />
-			<% key_records.each do |key_value,dups| %> 
-				<% next if dups.size == 1 %>
-				<%= "#{key_value}: #{dups.size} records" %> <br />
-			<% end %>
+			Fields: <%= key.unique_field_names.join( "," ) %><br />
+			Unique Records: <%= key.records.size %> <Rebuild Link><br />
+			Unique Keys: <br />
+			Duplicate key distribution <br />
 		</div>
 		<h3>Valid Records</h3>
 		<div style="height:auto;min-height:100px"  style="height:auto;min-height:100px">
 			Create datatable structure with @data_set.fields and source=data_set_key_url 
-			<% # @jquery.set_id( "#{key.name}_valid_records", :data_table  ) %>
+			<% table_id = "key_#{key.id}" %>
+			<% ajax_url = data_set_key_url( key.data_set, key, :format => "json" ) %>
+			<% settings = { 'bProcessing' => true, 'bServerSide' => true, 'sAjaxSource' => "##{table_id}.data('source')" } %>
+
+			<table <%= "data-source=#{ajax_url}" %>  <%= @jquery.set_id( "#{table_id}", :data_table, settings ) %> class="display" >
+				<thead>
+					<tr>
+						<% key.fields.each do |field| %>
+							<th><%= field.name %></th>
+						<% end %>
+					</tr>
+				</thead>
+				<tbody>
+				</tbody>
+			</table>
 		</div>
 	</div>
 </div>

@@ -1,0 +1,15 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Key:</b>
+  <%= @key_record.key %>
+</p>
+
+<p>
+  <b>Record:</b>
+  <%= @key_record.record %>
+</p>
+
+
+<%= link_to 'Edit', edit_key_record_path(@key_record) %> |
+<%= link_to 'Back', key_records_path %>

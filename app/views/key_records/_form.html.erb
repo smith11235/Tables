@@ -1,0 +1,12 @@
+<%= simple_form_for(@key_record) do |f| %>
+  <%= f.error_notification %>
+
+  <div class="form-inputs">
+    <%= f.association :key %>
+    <%= f.association :record %>
+  </div>
+
+  <div class="form-actions">
+    <%= f.button :submit %>
+  </div>
+<% end %>

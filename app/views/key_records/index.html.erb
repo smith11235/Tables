@@ -1,0 +1,25 @@
+<h1>Listing key_records</h1>
+
+<table>
+  <tr>
+    <th>Key</th>
+    <th>Record</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @key_records.each do |key_record| %>
+  <tr>
+    <td><%= key_record.key %></td>
+    <td><%= key_record.record %></td>
+    <td><%= link_to 'Show', key_record %></td>
+    <td><%= link_to 'Edit', edit_key_record_path(key_record) %></td>
+    <td><%= link_to 'Destroy', key_record, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Key record', new_key_record_path %>
