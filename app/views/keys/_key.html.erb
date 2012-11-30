@@ -19,8 +19,7 @@
 		<div style="height:auto;min-height:100px"  style="height:auto;min-height:100px">
 			<% table_id = "key_#{key.id}" %>
 			<% ajax_url = data_set_key_url( key, :format => "json" ) %>
-			<% settings = { 'bProcessing' => true, 'bServerSide' => true, 'sAjaxSource' => "#{table_id}.data('source')" } %>
-
+			<% settings = {} # { 'bProcessing' => true, 'bServerSide' => true, 'sAjaxSource' => "#{table_id}.data('source')" } %>
 			<table <%= "#{@jquery.set_id( table_id, :data_table, settings )} data-source=#{ajax_url}" %> class="display" >
 				<thead>
 					<tr>

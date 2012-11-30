@@ -1,0 +1,4 @@
+$('#main_display_info').dataTable( {
+	"aaData": <%= @table[ :records ].to_json %>,
+	"aoColumns": <%= @table[ :columns ].to_json %>
+} );	

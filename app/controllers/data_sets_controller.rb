@@ -1,5 +1,6 @@
 class DataSetsController < ApplicationController
 
+
 	class JQueryUIsTracker
 		def initialize( gon )
 			@gon = gon
@@ -14,12 +15,32 @@ class DataSetsController < ApplicationController
 			when :accordion
 				settings.reverse_merge!	'collapsible' => true, 'heightStyle' => 'content', 'active' => false
 			when :data_table
-				settings.reverse_merge!	'sPaginationType' => 'full_numbers',  'bJQueryUI' => true 
+				settings.reverse_merge!	'sPaginationType' => 'full_numbers',  'bJQueryUI' => true,  'bDeferRender' => true
 			end
-			
+
 			@gon.jquery_uis[ type ][ id ] = settings 
 			return "id=#{id}"
 		end
+	end
+
+	class TableDef
+
+		def initialize( data_set )
+			@table = Hash.new
+			@table[ :columns ] = data_set.fields.collect { |field| field.name }
+			@table[ :records ] = data_set.records.collect do |record|
+				data_set.fields.collect do |field|
+					record.get_cell( field ).string
+				end
+			end
+		end
+
+		def as_json(options = {})
+			{
+				:table => @table
+			}
+		end
+
 	end
 
 	# GET /data_sets/1
@@ -40,7 +61,7 @@ class DataSetsController < ApplicationController
 
 		respond_to do |format|
 			format.html # show.html.erb
-			format.json { render json: DataSetTable.new(view_context,@data_set) }
+			format.json { render json: TableDef.new(@data_set) } 
 		end
 	end
 

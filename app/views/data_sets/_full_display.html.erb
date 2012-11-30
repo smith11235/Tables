@@ -1,8 +1,9 @@
 <% revision ||= nil # optionally support key filtering %>
 <% key ||= nil # optionally support key filtering %>
 <% valid ||= true # when conditions are passed, do we return matching or non matching %>
-
 <% primary = revision || data_set %>
+<% table_id ||= "data_set_#{primary.id}" %>
+
 <% if revision.nil? && key.nil? %>
 	<b>Name: </b><%= "#{data_set.name} #{data_set.parameters.nil? ? '' : "<b>Parameters:</b> #{data_set.parameters}" }" %><br />
 	<b>Created At:</b> <%= data_set.created_at %><br />
@@ -15,10 +16,8 @@
 
 
 <div style="height:auto;min-height:250px" >
-	<% settings = { 'bProcessing' => true, 'bServerSide' => true, 'sAjaxSource' => "#data_set_#{primary.id}.data('source')" } %>
-
 	<% source_url = data_set_url( primary, :format => "json" ) %>
-	<table <%= "data-source=#{source_url}" %>  <%= @jquery.set_id( "data_set_#{primary.id}", :data_table, settings ) %> class="display" >
+	<table <%= "data-source=#{source_url}" %>  <%= @jquery.set_id( table_id, :data_table ) %> class="display" >
 		<thead>
 			<tr>
 				<% primary.fields.each do |field| %>

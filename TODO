@@ -1,29 +1,35 @@
-- in progress:
-	- problem:
-		- records display for keys, call is going formated wrong from dataset
-		- need to load dataset from a javascript function instead
+- problem:
+	- ajax for datatable key display is not working right
+	- write html for now, figure out ajax later
 
+- key: non_records: display in same way as records
+		
+- main data display:
+	- select a key: refresh with records matching the key
+		- invalid records: show records not matching the key
+
+- reload page/open new tab/menu index
  	- key: create new: 
-		- refresh with view of key
-			- app/views/data_sets/show.html.erb: tab_index not working
-			- reload records display
-	- duplicate key distribution chart
+		- app/views/data_sets/show.html.erb: tab_index not working
 
+- data set joins:
+	- create Join
+		- enter name
+		- select left key
+		- select right key
+	- create JoinField
+	  - name: defaults to left key.name
+		- left key
+		- right key
+		- has_many :conditions # if none: assume equality
+	- create JoinRecord
+		- left record
+		- right record
 
-- data set joins: # replicate mysql search + join functionality
-	- select a dataset
-	- select another dataset (can be a self join)
-	- select a key on each
-	- select fields to link between keys
-		- select datatypes of fields
-		- select comparisons/limits
-			- :name != jon, :i > 4
-	- Join from_id:integer to_id:integer name:string
-		- from/to are keys, or a join
-		- has_many :conditions
-  - Condition :owner_id:integer :owner:type 
-		- also: <left exp||field> <condition> <right exp||field>
-
+	- create Condition ( do this later, much harder, need data typing )
+		- useable by JoinFields and Filters 
+			- Filters act on a single data set
+		
 - revision analysis:
 	- select revision
 	- show key-analysis:

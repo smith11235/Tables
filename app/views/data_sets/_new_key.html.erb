@@ -1,17 +1,17 @@
-				<%= form_for( [data_set, data_set.keys.build] ) do |f| %>
-					<div class="field">
-						<%= f.label :name %><br />
-						<%= f.text_field :name %>
-					</div>
-					<ul>
-						<% data_set.fields.each do |field| %>
-							<li>
-							<%= check_box_tag 'field_ids[]', field.id -%>
-							<%= field.name -%>
-							</li>
-						<% end %>
-					</ul>
-					<div class="actions">
-						<%= f.submit %>
-					</div>
-				<% end %>
+<%= form_for( [data_set, data_set.keys.build] ) do |f| %>
+	<div class="field">
+		<%= f.label :name %><br />
+		<%= f.text_field :name %>
+	</div>
+	<ul>
+		<% data_set.fields.each do |field| %>
+			<li>
+			<%= check_box_tag 'field_ids[]', field.id -%>
+			<%= field.name -%>
+			</li>
+		<% end %>
+	</ul>
+	<div class="actions">
+		<%= f.submit %>
+	</div>
+<% end %>
