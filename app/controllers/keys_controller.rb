@@ -18,11 +18,11 @@ class KeysController < ApplicationController
 			@key.set_records # create a key_record's index
 
 			respond_to do |format|
-				format.json { render json: @key } 
+				format.json {render :formats=>[:html],:partial =>"key",:locals =>{:key=>@key}, :content_type => 'text/html' }
 			end
 		end
 	end
-	
+
 	def find_records
 		@data_set = DataSet.find(params[:data_set_id])
 		@key = @data_set.keys.find(params[:id])

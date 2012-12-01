@@ -27,3 +27,4 @@ this.setMainDisplay = setMainDisplay = ( table ) ->
 # use this method to do the initial load
 jQuery ->
 	setMainDisplay( gon.table )
+

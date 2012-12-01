@@ -1,11 +1,9 @@
-- key: non_records: display in same way as records
-		
-- create key - ajax - .bind isnt firing
-	- add element to current_keys accordion
-	- set it to active
+- keys: 
+	- make tabs for New Key, Current Keys
+	- create key: add/drop jquery for fields
+	- show_non_key_records
 
-- create key: add/drop jquery for fields
-	- with live record totals
+- accordion re-initialization using coffeescript and original settings
 
 - data set joins:
 	- create Join

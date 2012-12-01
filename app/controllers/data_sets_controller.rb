@@ -39,7 +39,7 @@ class DataSetsController < ApplicationController
 			end
 		end
 		
-		gon.table = DataSet::Table.new(@data_set) # this is for the initial load
+		gon.table = Table.new( @data_set ) # this is for the initial load
 		respond_to do |format|
 			format.json { render json: gon.table } 
 			format.html # show.html.erb
