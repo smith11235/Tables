@@ -2,9 +2,9 @@
 
 <p id="notice"><%= notice %></p>
 <div>
-	<%= link_to "Show Full Dataset", data_set_url(@data_set), :remote => true %><br />
+	<%= link_to "Show Full Dataset", data_set_url(@data_set), :remote => true, :class => 'reset_main_display' %><br />
 	<script>
-		$('a').bind('ajax:success', function(event, xhr, status, data) {  
+		$('.reset_main_display').bind('ajax:success', function(event, xhr, status, data) {  
 			var table = JSON.parse(data.responseText);
 			setMainDisplay( table );
 		} );

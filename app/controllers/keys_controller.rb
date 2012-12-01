@@ -17,7 +17,9 @@ class KeysController < ApplicationController
 			end
 			@key.set_records # create a key_record's index
 
-			redirect_to( data_set_path(@data_set), :tab_index => $key_index, :key_id => @key.id )
+			respond_to do |format|
+				format.json { render json: @key } 
+			end
 		end
 	end
 	
