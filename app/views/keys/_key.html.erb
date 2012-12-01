@@ -16,7 +16,7 @@
 		$('.<%= ajax_class %>').bind('ajax:success', function() {  
 			$('#<%= uid %>').fadeOut();  
 			$('#<%= uid %>_header').fadeOut();  
-			$('#current_keys').accordion('destroy').accordion();
+			resetJQueryUI('accordion','current_keys');
 		});
 	</script>
 	<h3>Stats:</h3>

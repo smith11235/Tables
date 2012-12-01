@@ -1,9 +1,9 @@
+- accordion re-initialization using coffeescript and original settings
+
 - keys: 
 	- make tabs for New Key, Current Keys
 	- create key: add/drop jquery for fields
 	- show_non_key_records
-
-- accordion re-initialization using coffeescript and original settings
 
 - data set joins:
 	- create Join

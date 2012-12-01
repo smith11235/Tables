@@ -14,7 +14,13 @@ jQuery ->
 							for id,settings of instances
         				$("##{id}").dataTable( settings )
 
-
+this.resetJQueryUI = resetJQueryUI = ( ui_type, id ) ->
+	settings = gon.jquery_uis[ui_type][id]
+	switch ui_type
+		when 'tabs'
+			$("##{id}" ).tabs('destroy').tabs( settings )
+		when 'accordion'
+			$("##{id}" ).accordion('destroy').accordion( settings )
 
 this.setMainDisplay = setMainDisplay = ( table ) ->
 	$('#main_display').dataTable
