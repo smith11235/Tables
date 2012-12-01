@@ -1,13 +1,21 @@
-<h3><%= key.name %></h3>
+<h3 id="<%= key.name %>_header" ><%= key.name %></h3>
 <div id="<%= key.name %>" style="height:auto;min-height:100px" >
 	<%= link_to "Show Records", data_set_key_url(key.data_set,key), :remote => true %><br />
+
 	<script>
 		$('a').bind('ajax:success', function(event, xhr, status, data) {  
 			var table = JSON.parse(data.responseText);
 			setMainDisplay( table );
 		} );
 	</script>
-	<%= link_to 'Re-index This Key', find_records_data_set_key_url( key.data_set, key ) %>
+	<%= link_to 'Re-index This Key', find_records_data_set_key_url( key.data_set, key ) %><br />
+	<%= link_to 'Destroy', data_set_key_url( key.data_set,key ), :method => :delete,  :confirm => 'Are you sure?', :remote => true, :class => "delete_key" %>
+	<script>
+		$('.delete_key').bind('ajax:success', function() {  
+			$('#<%= key.name %>_header').fadeOut();  
+			$('#<%= key.name %>').fadeOut();  
+		});
+	</script>
 	<h3>Stats:</h3>
 	Fields: <%= key.unique_field_names.join( "," ) %><br />
 	Unique Records: <%= key.records.size %><br />

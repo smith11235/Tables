@@ -17,10 +17,21 @@
 <%= tab_index %> <br />
 <div <%= @jquery.set_id( "data_set_tabs", :tabs, 'active' => tab_index ) %> style="height:auto;min-height:100px" >
 	<ul>
-		<li><a href="#data_set_field_stats">Field Stats</a></li>
 		<li><a href="#keys">Keys</a></li>
+		<li><a href="#data_set_field_stats">Field Stats</a></li>
 		<li><a href="#revisions">Revisions</a></li>
 	</ul>
+
+	<div id="keys" style="height:auto;min-height:100px"  >
+		<% if @data_set.keys.size > 0  %>
+			<div <%= @jquery.set_id( "current_keys", :accordion  ) %> style="height:auto;min-height:100px" >
+				<%= render @data_set.keys %>
+			</div>
+		<% end %>
+		<h3>Create New Key</h3>
+		<%= render 'new_key', :data_set => @data_set %>
+	</div>
+
 	<div <%= @jquery.set_id( "data_set_field_stats", :accordion  ) %> style="height:auto" >
 		<% @data_set.fields.each do |field| %>
 			<h3><%= field.name %></h3>
@@ -33,16 +44,6 @@
 				</ul>
 			</div>
 		<% end %>
-	</div>
-
-	<div id="keys" style="height:auto;min-height:100px"  >
-		<% if @data_set.keys.size > 0  %>
-			<div <%= @jquery.set_id( "current_keys", :accordion  ) %> style="height:auto;min-height:100px" >
-				<%= render @data_set.keys %>
-			</div>
-		<% end %>
-		<h3>Create New Key</h3>
-		<%= render 'new_key', :data_set => @data_set %>
 	</div>
 
 	<div <%= @jquery.set_id( "revisions", :accordion ) %> style="height:auto" >

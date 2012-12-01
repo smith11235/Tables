@@ -1,11 +1,9 @@
-- problem:
-	- record ajax not updating div
-
 - key: non_records: display in same way as records
 		
-- main data display:
-	- select a key: refresh with records matching the key
-		- invalid records: show records not matching the key
+- create key - ajax
+- create key - ajax
+- delete key button
+
 
 - reload page/open new tab/menu index
  	- key: create new: 
