@@ -15,9 +15,15 @@ jQuery ->
         				$("##{id}").dataTable( settings )
 
 
+
 this.setMainDisplay = setMainDisplay = ( table ) ->
 	$('#main_display').dataTable
+		bDestroy: true,
 		sPaginationType: "full_numbers",
 		bJQueryUI: true,
 		aaData: table.records,
 		aoColumns: table.columns
+
+# use this method to do the initial load
+jQuery ->
+	setMainDisplay( gon.table )

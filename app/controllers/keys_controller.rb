@@ -43,11 +43,12 @@ class KeysController < ApplicationController
 	# GET /keys/1
 	# GET /keys/1.json
 	def show
-		@key = Key.find(params[:id])
+		@data_set = DataSet.find(params[:data_set_id])
+		@key = @data_set.keys.find(params[:id])
 
+		table = KeyTable.new( @key )
 		respond_to do |format|
-			format.html # show.html.erb
-			format.json { render json: KeyTable.new(view_context, @key) }
+			format.json { render json: table  } 
 		end
 	end
 

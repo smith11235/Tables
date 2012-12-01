@@ -23,27 +23,6 @@ class DataSetsController < ApplicationController
 		end
 	end
 
-	class TableDef
-
-		def initialize( data_set )
-			@table = Hash.new
-			@table[ :columns ] = data_set.fields.collect { |field| { "sTitle" => field.name } }
-			@table[ :records ] = data_set.records.collect do |record|
-				data_set.fields.collect do |field|
-					record.get_cell( field ).string
-				end
-			end
-		end
-
-		def as_json(options = {})
-			{
-				:records => @table[:records],
-				:columns => @table[:columns]
-			}
-		end
-
-	end
-
 	# GET /data_sets/1
 	# GET /data_sets/1.json
 	def show
@@ -59,10 +38,11 @@ class DataSetsController < ApplicationController
 				@revisions << revision
 			end
 		end
-
+		
+		gon.table = DataSet::Table.new(@data_set) # this is for the initial load
 		respond_to do |format|
+			format.json { render json: gon.table } 
 			format.html # show.html.erb
-			format.json { render json: TableDef.new(@data_set) } 
 		end
 	end
 
