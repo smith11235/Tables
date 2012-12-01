@@ -13,3 +13,11 @@ jQuery ->
 						when 'data_table'
 							for id,settings of instances
         				$("##{id}").dataTable( settings )
+
+
+this.setMainDisplay = setMainDisplay = ( table ) ->
+	$('#main_display').dataTable
+		sPaginationType: "full_numbers",
+		bJQueryUI: true,
+		aaData: table.records,
+		aoColumns: table.columns

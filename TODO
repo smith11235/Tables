@@ -1,6 +1,5 @@
 - problem:
-	- ajax for datatable key display is not working right
-	- write html for now, figure out ajax later
+	- record ajax not updating div
 
 - key: non_records: display in same way as records
 		
