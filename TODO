@@ -1,13 +1,11 @@
 - key: non_records: display in same way as records
 		
-- create key - ajax
-- create key - ajax
-- delete key button
+- create key - ajax - .bind isnt firing
+	- add element to current_keys accordion
+	- set it to active
 
-
-- reload page/open new tab/menu index
- 	- key: create new: 
-		- app/views/data_sets/show.html.erb: tab_index not working
+- create key: add/drop jquery for fields
+	- with live record totals
 
 - data set joins:
 	- create Join

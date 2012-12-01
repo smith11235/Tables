@@ -1,6 +1,6 @@
 <% uid = "key_#{key.id}" %>
 <h3 id="<%= uid %>_header" ><%= key.name %></h3>
-<div id="<%= uid %>" style="height:auto;min-height:100px" >
+<div id="<%= uid %>"  >
 	<% ajax_class = "show_key_records_#{uid}" %>
 	<%= link_to "Show Records", data_set_key_url(key.data_set,key), :remote => true, :class => ajax_class %><br />
 	<script>
@@ -11,11 +11,10 @@
 	</script>
 
 	<% ajax_class = "delete_key_#{uid}" %>
-	<%= link_to 'Destroy', data_set_key_url( key.data_set,key ), :method => :delete,  :remote => true, :class => ajax_class %>
+	<%= link_to 'Delete', data_set_key_url( key.data_set,key ), :method => :delete,  :remote => true, :class => ajax_class %>
 	<script>
 		$('.<%= ajax_class %>').bind('ajax:success', function() {  
-			$('#<%= key.name %>_header').fadeOut();  
-			$('#<%= key.name %>').fadeOut();  
+			$('#<%= uid %>').html("Key Deleted");  
 			$('#current_keys').accordion('refresh');
 			console.log("Deleted Key");
 		});

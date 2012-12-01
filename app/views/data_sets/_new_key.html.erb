@@ -1,5 +1,5 @@
 <div id="create_key" >
-	<%= form_for( [data_set, data_set.keys.build ], :remote => true ) do |f| %>
+	<%= form_for( [data_set, data_set.keys.build], :remote => true ) do |f| %>
 		<div class="field">
 			<%= f.label :name %><br />
 			<%= f.text_field :name %>
@@ -14,14 +14,14 @@
 		</ul>
 
 		<div class="actions">
-			<%= f.submit( :class => "create_key" ) %>
+			<%= f.submit( "Create Key" ) %>
 		</div>
 	<% end %>
+
 	<script>
-		$('.create_key').bind('ajax:success', function(event, xhr, status, data) {  
+		$('#new_key').bind('ajax:success', function(event, xhr, status, data) {  
 			var key = JSON.parse(data.responseText);
 			console.log(key);
 		} );
 	</script>
-
 </div>
