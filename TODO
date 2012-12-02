@@ -1,8 +1,13 @@
-- accordion re-initialization using coffeescript and original settings
+- div resizing:
+	- in tab's, the revision section:
+		- resize motherfucker
 
 - keys: 
-	- make tabs for New Key, Current Keys
-	- create key: add/drop jquery for fields
+	- create key: 
+		- refocus from new to current
+			- with new key active
+		- clear form after creation: ajax
+		- add/drop jquery for fields
 	- show_non_key_records
 
 - data set joins:
@@ -36,9 +41,6 @@
 			- deleted field: cell is red
 			- changed value: cell is yellow
 
-- div resizing:
-	- in tab's, the revision section:
-		- resize motherfucker
 
 
 api:

@@ -1,6 +1,6 @@
 <% uid = "key_#{key.id}" %>
 <h3 id="<%= uid %>_header" ><%= key.name %></h3>
-<div id="<%= uid %>"  >
+<div id="<%= uid %>" style="height:auto;min-height:150px" >
 	<% ajax_class = "show_key_records_#{uid}" %>
 	<%= link_to "Show Records", data_set_key_url(key.data_set,key), :remote => true, :class => ajax_class %><br />
 	<script>
