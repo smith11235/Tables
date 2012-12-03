@@ -1,16 +1,14 @@
-- div resizing:
-	- in tab's, the revision section:
-		- resize motherfucker
+- div auto-sizing: currently have min heights
 
 - keys: 
 	- create key: 
-		- refocus from new to current
-			- with new key active
-		- clear form after creation: ajax
-		- add/drop jquery for fields
+		- clear form after creation
+		- improve field selection: add/drop jquery for fields
 	- show_non_key_records
 
 - data set joins:
+	- rails generate scaffold Join 
+
 	- create Join
 		- enter name
 		- select left key

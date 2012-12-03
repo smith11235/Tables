@@ -2,9 +2,9 @@ class Key < ActiveRecord::Base
 	belongs_to :data_set
 	attr_accessible :name
 
-	has_many :key_fields
+	has_many :key_fields, :dependent => :destroy
 	has_many :fields, :through => :key_fields
-	has_many :key_records
+	has_many :key_records, :dependent => :destroy
 	has_many :records, :through => :key_records
 
 	def unique_field_names
