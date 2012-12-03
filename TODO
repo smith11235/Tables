@@ -1,10 +1,10 @@
-- div auto-sizing: currently have min heights
-
 - keys: 
+	- show duplicate pk key records
 	- create key: 
 		- clear form after creation
 		- improve field selection: add/drop jquery for fields
-	- show_non_key_records
+
+- div auto-sizing: currently have min heights
 
 - data set joins:
 	- rails generate scaffold Join 

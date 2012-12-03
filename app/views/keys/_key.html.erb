@@ -2,7 +2,7 @@
 <h3 id="<%= uid %>_header" ><%= key.name %></h3>
 <div id="<%= uid %>" style="height:auto;min-height:150px" >
 	<% ajax_class = "show_key_records_#{uid}" %>
-	<%= link_to "Valid Records", data_set_key_url(key.data_set,key), :remote => true, :class => ajax_class %><br />
+	<%= link_to "Show Valid Records", data_set_key_url(key.data_set,key), :remote => true, :class => ajax_class %><br />
 	<script>
 		$('.<%= ajax_class %>').bind('ajax:success', function(event, xhr, status, data) {  
 			var table = JSON.parse( data.responseText );
@@ -10,7 +10,15 @@
 		} );
 	</script>
 	<% ajax_class = "show_not_key_records_#{uid}" %>
-	<%= link_to "Invalid Records", data_set_key_url(key.data_set,key, :records_type => 'not' ), :remote => true, :class => ajax_class %><br />
+	<%= link_to "Show Invalid Records", data_set_key_url(key.data_set,key, :records_type => 'not' ), :remote => true, :class => ajax_class %><br />
+	<script>
+		$('.<%= ajax_class %>').bind('ajax:success', function(event, xhr, status, data) {  
+			var table = JSON.parse( data.responseText );
+			setMainDisplay( table );
+		} );
+	</script>
+	<% ajax_class = "show_duplicate_key_records_#{uid}" %>
+	<%= link_to "Show Records With Duplicate Key Values", data_set_key_url(key.data_set,key, :records_type => 'duplicate' ), :remote => true, :class => ajax_class %><br />
 	<script>
 		$('.<%= ajax_class %>').bind('ajax:success', function(event, xhr, status, data) {  
 			var table = JSON.parse( data.responseText );

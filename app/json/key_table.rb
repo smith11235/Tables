@@ -12,13 +12,15 @@ class KeyTable
 				end
 			end
 		when 'not'
-			@table[ :records ] = Array.new
-			record_ids = key.records.map(&:id) # id's of records matching this key
-			key.data_set.records.each do |record| # loop through all available
-				if ! record_ids.include?( record.id )
-					@table[ :records ] << key.data_set.fields.collect do |field|
-						record.get_cell( field ).string
-					end
+			@table[ :records ] = key.get_not_records.collect do |record|
+				key.data_set.fields.collect do |field|
+					record.get_cell( field ).string
+				end
+			end
+		when 'duplicate'
+			@table[ :records ] = key.get_duplicate_records.collect do |record|
+				key.data_set.fields.collect do |field|
+					record.get_cell( field ).string
 				end
 			end
 		else 

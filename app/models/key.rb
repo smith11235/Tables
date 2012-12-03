@@ -25,4 +25,32 @@ class Key < ActiveRecord::Base
 		end
 	end
 
+	def get_not_records
+		record_ids = self.records.map(&:id) # id's of records matching this key
+		not_records = Array.new
+		self.data_set.records.each do |record| # loop through all available records
+			not_records << record unless record_ids.include?( record.id ) # if not matched to this key
+		end
+		not_records 
+	end
+
+	def get_duplicate_records
+		primary_keys = Hash.new	
+
+		self.records.each do |record| # check each record
+			pk_value = ""
+			self.key_fields.each do |key_field|
+				 pk_value << "[#{record.get_cell( key_field.field ).string}]"
+			end
+			primary_keys[ pk_value ] ||= Array.new
+			primary_keys[ pk_value ] << record
+		end
+
+		duplicate_records = Array.new
+		primary_keys.each do |key,records|
+			duplicate_records.concat( records ) if records.size > 1	
+		end
+		duplicate_records	
+	end
+
 end
