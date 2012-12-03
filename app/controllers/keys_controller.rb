@@ -48,7 +48,8 @@ class KeysController < ApplicationController
 		@data_set = DataSet.find(params[:data_set_id])
 		@key = @data_set.keys.find(params[:id])
 
-		table = KeyTable.new( @key )
+		records_type = params[:records_type] 
+		table = KeyTable.new( @key, records_type )
 		respond_to do |format|
 			format.json { render json: table  } 
 		end

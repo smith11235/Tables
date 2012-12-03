@@ -38,10 +38,10 @@
 			<h3><%= field.name %></h3>
 			<div id="<%= field.name %>_stats" style="height:auto;min-height:100px" >
 				<ul>
-					<li><b>Cells:</b> <%= field.cells.size %></li>
+					<li><b>Records With This Field:</b> <%= field.cells.size %></li>
 					<% unique_cell_values = field.cells.map(&:string).uniq %>
-					<li><b># Unique Cells:</b> <%= unique_cell_values.size %></li>
-					<li><b>Unique Values:</b> <%= unique_cell_values %></li>
+					<li><b>Number of Unique Field Values:</b> <%= unique_cell_values.size %></li>
+					<li><b>Unique Field Values:</b> <%= unique_cell_values %></li>
 				</ul>
 			</div>
 		<% end %>
