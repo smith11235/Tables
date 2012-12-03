@@ -1,30 +1,41 @@
 - keys: 
-	- show duplicate pk key records
 	- create key: 
 		- clear form after creation
 		- improve field selection: add/drop jquery for fields
 
-- div auto-sizing: currently have min heights
+- div (re)sizing
 
-- data set joins:
-	- rails generate scaffold Join 
+- Join:
+	- start using /joins/ to show these web pages
+	- rails generate scaffold Join name:string left_key:references right_key:references
+		- has_one :left_key, :class_name => "Key"
+		- has_one :right_key, :class_name => "Key"
 
-	- create Join
+	- Create Join
 		- enter name
-		- select left key
-		- select right key
-	- create JoinField
-	  - name: defaults to left key.name
-		- left key
-		- right key
-		- has_many :conditions # if none: assume equality
-	- create JoinRecord
-		- left record
-		- right record
+		- select left Key (dropdown)
+		- select right Key (dropdown)
+  - Create JoinField's
+		- show form for creating JoinFields
+	  	- create JoinField
+	  		- left key
+	  		- right key
+	- Create JoinRecord's
+  	- left record
+  	- right record
 
-	- create Condition ( do this later, much harder, need data typing )
-		- useable by JoinFields and Filters 
-			- Filters act on a single data set
+	- Display:
+		- columns: color coded to show key ownership
+		- add 'id' column at the start of each 'key' to show duplicate usage 
+		- views:
+			- All Join Records
+			- left duplicates
+			- right duplicates
+			- missing records (left and right display)
+
+- key:
+	- allow creation on top of Join or DataSet
+	- allow setting of Condition's
 		
 - revision analysis:
 	- select revision
@@ -38,8 +49,6 @@
 			- new field: cell is green
 			- deleted field: cell is red
 			- changed value: cell is yellow
-
-
 
 api:
   - gem

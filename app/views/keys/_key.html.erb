@@ -1,8 +1,10 @@
 <% uid = "key_#{key.id}" %>
 <h3 id="<%= uid %>_header" ><%= key.name %></h3>
 <div id="<%= uid %>" style="height:auto;min-height:150px" >
+	<b>Number Of Records:</b> <%= key.records.size %><br />
+	<b>Field Names:</b> <%= key.unique_field_names.join( "," ) %><br />
 	<% ajax_class = "show_key_records_#{uid}" %>
-	<%= link_to "Show Valid Records", data_set_key_url(key.data_set,key), :remote => true, :class => ajax_class %><br />
+	<%= link_to "Show Valid Records", data_set_key_url(key.data_set,key), :remote => true, :class => ajax_class, :title => "Records that have all the fields required for this key", :rel => "tooltip" %><br />
 	<script>
 		$('.<%= ajax_class %>').bind('ajax:success', function(event, xhr, status, data) {  
 			var table = JSON.parse( data.responseText );
@@ -10,7 +12,7 @@
 		} );
 	</script>
 	<% ajax_class = "show_not_key_records_#{uid}" %>
-	<%= link_to "Show Invalid Records", data_set_key_url(key.data_set,key, :records_type => 'not' ), :remote => true, :class => ajax_class %><br />
+	<%= link_to "Show Invalid Records", data_set_key_url(key.data_set,key, :records_type => 'not' ), :remote => true, :class => ajax_class, :title => "Records that do not have all the fields for this key", :rel => "tooltip" %><br />
 	<script>
 		$('.<%= ajax_class %>').bind('ajax:success', function(event, xhr, status, data) {  
 			var table = JSON.parse( data.responseText );
@@ -18,7 +20,7 @@
 		} );
 	</script>
 	<% ajax_class = "show_duplicate_key_records_#{uid}" %>
-	<%= link_to "Show Records With Duplicate Key Values", data_set_key_url(key.data_set,key, :records_type => 'duplicate' ), :remote => true, :class => ajax_class %><br />
+	<%= link_to "Show Records With Duplicate Key Values", data_set_key_url(key.data_set,key, :records_type => 'duplicate' ), :remote => true, :class => ajax_class, :title => "Records that have overlapping values across all the key fields", :rel => "tooltip" %><br />
 	<script>
 		$('.<%= ajax_class %>').bind('ajax:success', function(event, xhr, status, data) {  
 			var table = JSON.parse( data.responseText );
@@ -35,9 +37,4 @@
 			resetJQueryUI('accordion','current_keys');
 		});
 	</script>
-	<h5>Stats:</h5>
-	Fields: <%= key.unique_field_names.join( "," ) %><br />
-	Unique Records: <%= key.records.size %><br />
-	Unique Keys: <br />
-	Duplicate key distribution <br />
 </div>

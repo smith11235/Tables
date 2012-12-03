@@ -16,6 +16,7 @@
 <div <%= @jquery.set_id( "data_set_tabs", :tabs ) %> style="height:auto;min-height:100px" >
 	<ul>
 		<li><a href="#key_tabs">Keys</a></li>
+		<li><a href="#joins">Joins</a></li>
 		<li><a href="#data_set_field_stats">Field Stats</a></li>
 		<li><a href="#revisions">Revisions</a></li>
 	</ul>
@@ -30,6 +31,19 @@
 		</div>
 		<div id="create_key_tab" >
 			<%= render 'new_key', :data_set => @data_set %>
+		</div>
+	</div>
+
+	<div <%= @jquery.set_id( "joins", :tabs, 'active' => 0 ) %>  >
+		<ul>
+			<li><a href="#current_joins">Current</a></li>
+			<li><a href="#create_join">Create New</a></li>
+		</ul>
+		<div <%= @jquery.set_id( "current_joins", :accordion  ) %>  >
+			render @data_set.joins 
+		</div>
+		<div id="create_join" >
+			render 'new_join', :data_set => @data_set
 		</div>
 	</div>
 
