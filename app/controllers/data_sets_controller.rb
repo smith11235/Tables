@@ -1,6 +1,5 @@
 class DataSetsController < ApplicationController
 
-
 	class JQueryUIsTracker
 		def initialize( gon )
 			@gon = gon

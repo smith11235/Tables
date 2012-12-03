@@ -22,6 +22,8 @@
 		$('#new_key').bind('ajax:success', function(event, xhr, status, data) {  
 			$("#current_keys").prepend( data.responseText );
 			resetJQueryUI('accordion','current_keys');
+			$('#key_tabs').tabs('select',0);
+			$("#current_keys").accordion('option','active',0);
 		} );
 	</script>
 </div>
