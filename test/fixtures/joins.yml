@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  name: MyString
+  left_key: 
+  right_key: 
+
+two:
+  name: MyString
+  left_key: 
+  right_key: 

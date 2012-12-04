@@ -1,5 +1,7 @@
 Tables::Application.routes.draw do
 
+  resources :joins
+
   resources :key_records
 
   get "home/index"

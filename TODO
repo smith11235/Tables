@@ -2,31 +2,35 @@
 	- create key: 
 		- clear form after creation
 		- improve field selection: add/drop jquery for fields
-
 - div (re)sizing
 
+
 - Join:
-	- start using /joins/ to show these web pages
+	- :join as a base resource
 	- rails generate scaffold Join name:string left_key:references right_key:references
 		- has_one :left_key, :class_name => "Key"
 		- has_one :right_key, :class_name => "Key"
+		- has_many :join_fields
+		- has_many :join_records
 
-	- Create Join
+	- Create Join ( in data_sets/X Join tab )
+		- form in datasets join tab
 		- enter name
-		- select left Key (dropdown)
-		- select right Key (dropdown)
+		- select left Key (dropdown, @key.data_set.keys)
+		- select right Key ( dropdown, Key.all )
+		- create and show JoinFields form
   - Create JoinField's
-		- show form for creating JoinFields
-	  	- create JoinField
-	  		- left key
-	  		- right key
-	- Create JoinRecord's
+		- add delete
+	  - left key
+	  - right key
+
+	- button to regenerate JoinRecord's
   	- left record
   	- right record
 
 	- Display:
-		- columns: color coded to show key ownership
-		- add 'id' column at the start of each 'key' to show duplicate usage 
+		- column names: (left|right).<field name>
+		- add record.id columns for left and right
 		- views:
 			- All Join Records
 			- left duplicates

@@ -1,0 +1,20 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Name:</b>
+  <%= @join.name %>
+</p>
+
+<p>
+  <b>Left key:</b>
+  <%= @join.left_key %>
+</p>
+
+<p>
+  <b>Right key:</b>
+  <%= @join.right_key %>
+</p>
+
+
+<%= link_to 'Edit', edit_join_path(@join) %> |
+<%= link_to 'Back', joins_path %>

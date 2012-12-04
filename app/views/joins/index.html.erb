@@ -1,0 +1,27 @@
+<h1>Listing joins</h1>
+
+<table>
+  <tr>
+    <th>Name</th>
+    <th>Left key</th>
+    <th>Right key</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @joins.each do |join| %>
+  <tr>
+    <td><%= join.name %></td>
+    <td><%= join.left_key %></td>
+    <td><%= join.right_key %></td>
+    <td><%= link_to 'Show', join %></td>
+    <td><%= link_to 'Edit', edit_join_path(join) %></td>
+    <td><%= link_to 'Destroy', join, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Join', new_join_path %>
