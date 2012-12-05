@@ -40,10 +40,13 @@
 			<li><a href="#create_join">Create New</a></li>
 		</ul>
 		<div <%= @jquery.set_id( "current_joins", :accordion  ) %>  >
-			render @data_set.joins 
+			<% @data_set.keys.each do |key| %>
+				<%= render key.left_joins %>
+				<%= render key.right_joins %>
+			<% end %>
 		</div>
 		<div id="create_join" >
-			render 'new_join', :data_set => @data_set
+			<%= render 'joins/form', :data_set => @data_set %>
 		</div>
 	</div>
 

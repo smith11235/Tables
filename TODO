@@ -4,12 +4,12 @@
 		- improve field selection: add/drop jquery for fields
 - div (re)sizing
 
-
 - Join:
-	- :join as a base resource
-	- rails generate scaffold Join name:string left_key:references right_key:references
-		- has_one :left_key, :class_name => "Key"
-		- has_one :right_key, :class_name => "Key"
+	- ****************************************************
+		- Progress: finish Create Join 
+			- current_joins: how to show them... hmmm, need to collect them in controller
+				- or make current joins a key_X_joins subsection for more proper organization
+		- new form: dropboxs, joins_controller.create
 		- has_many :join_fields
 		- has_many :join_records
 
@@ -18,15 +18,25 @@
 		- enter name
 		- select left Key (dropdown, @key.data_set.keys)
 		- select right Key ( dropdown, Key.all )
-		- create and show JoinFields form
-  - Create JoinField's
-		- add delete
-	  - left key
-	  - right key
+		- create and on success redirect to join
 
-	- button to regenerate JoinRecord's
-  	- left record
-  	- right record
+	- join_url/X
+		- main_display 
+			- columns: left.(names) + right.(names)
+			- empty to begin with, loaded from JoinRecord's
+
+		- rails generate scaffold JoinField left_field:references right_field:references
+			- belongs_to (left|right)_field, :class_name => "Field"
+		- Current fields index
+			- with delete option
+			- on delete, reindex
+  	- Create JoinField form
+			- just selct two fields
+			- on create, reindex
+
+	- index JoinRecord's
+		- rails generate scaffold JoinRecord left_record:references right_record:references
+		- belongs_to (left|right)_field, :class_name => "Field"
 
 	- Display:
 		- column names: (left|right).<field name>

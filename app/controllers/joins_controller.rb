@@ -40,14 +40,28 @@ class JoinsController < ApplicationController
   # POST /joins
   # POST /joins.json
   def create
-    @join = Join.new(params[:join])
+    @join = Join.new(:name => params[:join][:name])
+
+		if @join.name.nil?
+			raise "no name for join"
+		elsif params[:join][:left_key].nil? 
+			raise "left key missing"
+		elsif params[:join][:right_key].nil?
+			raise "right key missing"
+		end
+		
+		left_key = Key.find( params[:join][:left_key] )
+		right_key = Key.find( params[:join][:right_key] )
+
+		raise "invalid Left Key id: #{params[:join][:left_key]}" if left_key.nil?
+		raise "invalid Right Key id: #{params[:join][:right_key]}" if right_key.nil?
+		@join.left_key = left_key
+		@join.right_key = right_key
 
     respond_to do |format|
       if @join.save
-        format.html { redirect_to @join, notice: 'Join was successfully created.' }
-        format.json { render json: @join, status: :created, location: @join }
+				format.json {render :formats=>[:html],:partial =>"join",:locals =>{:join=>@join}, :content_type => 'text/html' }
       else
-        format.html { render action: "new" }
         format.json { render json: @join.errors, status: :unprocessable_entity }
       end
     end

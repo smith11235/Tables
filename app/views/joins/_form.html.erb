@@ -1,13 +1,26 @@
-<%= simple_form_for(@join) do |f| %>
-  <%= f.error_notification %>
+<%= form_for( Join.new, :remote => true ) do |f| %>
+	<div class="field">
+		<%= f.label :name %><br />
+		<%= f.text_field :name %>
+	</div>
 
-  <div class="form-inputs">
-    <%= f.input :name %>
-    <%= f.association :left_key %>
-    <%= f.association :right_key %>
-  </div>
+	Left Key
+	<% data_set_keys = data_set.keys.collect { |key| [ key.name, key.id ] } %>
+	<%= f.select :left_key, data_set_keys %>
 
-  <div class="form-actions">
-    <%= f.button :submit %>
-  </div>
+	Right Key
+	<% data_set_keys = Key.all.collect { |key| [ key.name, key.id ] } %>
+	<%= f.select :right_key, data_set_keys %>
+
+	<div class="actions">
+		<%= f.submit( "Create Join" ) %>
+	</div>
 <% end %>
+<script>
+	$('#new_join').bind('ajax:success', function(event, xhr, status, data) {  
+		$("#current_joins").prepend( data.responseText );
+		resetJQueryUI('accordion','current_joins');
+		$('#joins').tabs('select',0);
+		$("#current_joins").accordion('option','active',0);
+	} );
+</script>

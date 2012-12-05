@@ -1,5 +1,5 @@
 class Join < ActiveRecord::Base
-  belongs_to :left_key
-  belongs_to :right_key
   attr_accessible :name
+	belongs_to :left_key, :class_name => "Key"
+	belongs_to :right_key, :class_name => "Key"
 end
