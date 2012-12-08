@@ -1,16 +1,17 @@
+<% raise "Missing 'data_set' local variable" if data_set.nil? %>
 <%= form_for( Join.new, :remote => true ) do |f| %>
 	<div class="field">
 		<%= f.label :name %><br />
 		<%= f.text_field :name %>
 	</div>
 
-	Left Key
+	Left Key:
 	<% data_set_keys = data_set.keys.collect { |key| [ key.name, key.id ] } %>
-	<%= f.select :left_key, data_set_keys %>
+	<%= f.select :left_key, data_set_keys %><br />
 
-	Right Key
+	Right Key:
 	<% data_set_keys = Key.all.collect { |key| [ key.name, key.id ] } %>
-	<%= f.select :right_key, data_set_keys %>
+	<%= f.select :right_key, data_set_keys %><br/>
 
 	<div class="actions">
 		<%= f.submit( "Create Join" ) %>
