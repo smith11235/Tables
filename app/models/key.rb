@@ -10,6 +10,8 @@ class Key < ActiveRecord::Base
 	has_many :left_joins, :class_name => "Join", :foreign_key => "left_key_id"
 	has_many :right_joins, :class_name => "Join", :foreign_key => "right_key_id"
 
+	has_many :conditions
+
 	def unique_field_names
 		return self.fields.collect {|field| field.name }
 	end

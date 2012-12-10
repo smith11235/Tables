@@ -1,0 +1,17 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  key: 
+  left_field: 
+  comparison: MyString
+  data_type: MyString
+  right_field: 
+  right_value: MyString
+
+two:
+  key: 
+  left_field: 
+  comparison: MyString
+  data_type: MyString
+  right_field: 
+  right_value: MyString

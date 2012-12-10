@@ -1,0 +1,25 @@
+<div id="create_key_condition" >
+<%= form_for( [key.keyable, key, key.conditions.build], :remote => true ) do |f| %>
+	<% fields = key.keyable.fields.collect { |field| [ field.name, field.id ] } %>
+	Left Field (mandatory): 
+		<%= f.select :left_field, fields %><br />
+
+	f.input :comparison %>
+	f.input :data_type %>
+	f.association :right_field %>
+	f.input :right_value %>
+
+
+	<div class="actions">
+		<%= f.submit( "Create Condition" ) %>
+	</div>
+<% end %>
+
+<script>
+	$('#new_condition').bind('ajax:success', function(event, xhr, status, data) {  
+		alert('created condition');
+		console.log(data);
+	} );
+</script>
+</div>
+

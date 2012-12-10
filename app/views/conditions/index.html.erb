@@ -1,0 +1,33 @@
+<h1>Listing conditions</h1>
+
+<table>
+  <tr>
+    <th>Key</th>
+    <th>Left field</th>
+    <th>Comparison</th>
+    <th>Data type</th>
+    <th>Right field</th>
+    <th>Right value</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @conditions.each do |condition| %>
+  <tr>
+    <td><%= condition.key %></td>
+    <td><%= condition.left_field %></td>
+    <td><%= condition.comparison %></td>
+    <td><%= condition.data_type %></td>
+    <td><%= condition.right_field %></td>
+    <td><%= condition.right_value %></td>
+    <td><%= link_to 'Show', condition %></td>
+    <td><%= link_to 'Edit', edit_condition_path(condition) %></td>
+    <td><%= link_to 'Destroy', condition, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Condition', new_condition_path %>

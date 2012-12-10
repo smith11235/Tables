@@ -1,0 +1,35 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Key:</b>
+  <%= @condition.key %>
+</p>
+
+<p>
+  <b>Left field:</b>
+  <%= @condition.left_field %>
+</p>
+
+<p>
+  <b>Comparison:</b>
+  <%= @condition.comparison %>
+</p>
+
+<p>
+  <b>Data type:</b>
+  <%= @condition.data_type %>
+</p>
+
+<p>
+  <b>Right field:</b>
+  <%= @condition.right_field %>
+</p>
+
+<p>
+  <b>Right value:</b>
+  <%= @condition.right_value %>
+</p>
+
+
+<%= link_to 'Edit', edit_condition_path(@condition) %> |
+<%= link_to 'Back', conditions_path %>

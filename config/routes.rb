@@ -1,5 +1,6 @@
 Tables::Application.routes.draw do
 
+
   resources :joins
 
   resources :key_records
@@ -16,6 +17,7 @@ Tables::Application.routes.draw do
 				get 'find_records'
 			end
   		resources :key_fields
+  		resources :conditions
 		end
 	end
 

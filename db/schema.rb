@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20121210211748) do
+ActiveRecord::Schema.define(:version => 20121210225512) do
 
   create_table "cells", :force => true do |t|
     t.integer  "record_id"
@@ -26,6 +26,21 @@ ActiveRecord::Schema.define(:version => 20121210211748) do
 
   add_index "cells", ["field_id"], :name => "index_cells_on_field_id"
   add_index "cells", ["record_id"], :name => "index_cells_on_record_id"
+
+  create_table "conditions", :force => true do |t|
+    t.integer  "key_id"
+    t.integer  "left_field_id"
+    t.string   "comparison"
+    t.string   "data_type"
+    t.integer  "right_field_id"
+    t.string   "right_value"
+    t.datetime "created_at",     :null => false
+    t.datetime "updated_at",     :null => false
+  end
+
+  add_index "conditions", ["key_id"], :name => "index_conditions_on_key_id"
+  add_index "conditions", ["left_field_id"], :name => "index_conditions_on_left_field_id"
+  add_index "conditions", ["right_field_id"], :name => "index_conditions_on_right_field_id"
 
   create_table "data_sets", :force => true do |t|
     t.string   "name"
