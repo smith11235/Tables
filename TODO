@@ -1,42 +1,34 @@
+DataSet: 
+	- has_many :keys, :as => :keyable
+
+Join:
+	- has_many :keys, :as => :keyable
+
+Key: 
+	- belongs_to :keyable, :polymorphic => true
+		- need a migration, remove data_set_id, add keyable_id:integer keyable_type:string
+		- edit keys_controller, key_table
+
+	- has_many :conditions
+
+Condition:
+  - name:string key:references left_field:references comparison:string data_type:string right_field:references right_value:references
+	- right_field or right_value will be null
+	- data_type allows specification of what to process the cell data as 
+	- comparison: =, <, >, regex
+
+
 - keys: 
-	- create key: 
+	- create key/join: 
 		- clear form after creation
-		- improve field selection: add/drop jquery for fields
-- div (re)sizing
+- div (re)sizing and containment
 
 - Join:
-	- ****************************************************
-		- Progress: finish Create Join 
-			- current_joins: how to show them... hmmm, need to collect them in controller
-				- or make current joins a key_X_joins subsection for more proper organization
-		- new form: dropboxs, joins_controller.create
-		- has_many :join_fields
-		- has_many :join_records
-
-	- Create Join ( in data_sets/X Join tab )
-		- form in datasets join tab
-		- enter name
-		- select left Key (dropdown, @key.data_set.keys)
-		- select right Key ( dropdown, Key.all )
-		- create and on success redirect to join
-
 	- join_url/X
 		- main_display 
 			- columns: left.(names) + right.(names)
-			- empty to begin with, loaded from JoinRecord's
+			- empty to begin with, data when filter applied
 
-		- rails generate scaffold JoinField left_field:references right_field:references
-			- belongs_to (left|right)_field, :class_name => "Field"
-		- Current fields index
-			- with delete option
-			- on delete, reindex
-  	- Create JoinField form
-			- just selct two fields
-			- on create, reindex
-
-	- index JoinRecord's
-		- rails generate scaffold JoinRecord left_record:references right_record:references
-		- belongs_to (left|right)_field, :class_name => "Field"
 
 	- Display:
 		- column names: (left|right).<field name>
@@ -49,7 +41,7 @@
 
 - key:
 	- allow creation on top of Join or DataSet
-	- allow setting of Condition's
+	- allow creation of Filters
 		
 - revision analysis:
 	- select revision

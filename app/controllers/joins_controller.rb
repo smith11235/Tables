@@ -15,9 +15,10 @@ class JoinsController < ApplicationController
   def show
     @join = Join.find(params[:id])
 
+		gon.table = JoinTable.new( @join ) # this is for the initial load
     respond_to do |format|
       format.html # show.html.erb
-      format.json { render json: @join }
+      format.json { render json: gon.table }
     end
   end
 
