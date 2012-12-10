@@ -22,6 +22,7 @@ this.resetJQueryUI = resetJQueryUI = ( ui_type, id ) ->
 		when 'accordion'
 			$("##{id}" ).accordion('destroy').accordion( settings )
 
+
 this.setMainDisplay = setMainDisplay = ( table ) ->
 	$('#main_display').dataTable
 		bDestroy: true,

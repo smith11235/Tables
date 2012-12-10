@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20121210202935) do
+ActiveRecord::Schema.define(:version => 20121210211748) do
 
   create_table "cells", :force => true do |t|
     t.integer  "record_id"
@@ -71,6 +71,7 @@ ActiveRecord::Schema.define(:version => 20121210202935) do
     t.integer  "record_id"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
+    t.string   "status"
   end
 
   add_index "key_records", ["key_id"], :name => "index_key_records_on_key_id"

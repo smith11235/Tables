@@ -23,6 +23,7 @@ class Key < ActiveRecord::Base
 			if has_all_fields
 				key_record = self.key_records.create
 				key_record.record = record
+				key_record.status = 'valid'
 				key_record.save
 			end
 		end

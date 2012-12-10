@@ -4,6 +4,7 @@ class KeysController < ApplicationController
 	# POST /keys
 	# POST /keys.json
 	def create
+		@jquery = InitHelper.new( gon )
 		@keyable = DataSet.find(params[:data_set_id])
 
 		if params[:field_ids].nil?
@@ -19,7 +20,7 @@ class KeysController < ApplicationController
 			@key.set_records # create a key_record's index
 
 			respond_to do |format|
-				format.json {render :formats=>[:html],:partial =>"key",:locals =>{:key=>@key}, :content_type => 'text/html' }
+				format.json # { render :partial =>"key.html.erb",:locals =>{:key=>@key}, :content_type => 'text/html' }
 			end
 		end
 	end

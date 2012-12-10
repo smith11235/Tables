@@ -1,40 +1,54 @@
 <% uid = "key_#{key.id}" %>
 <h3 id="<%= uid %>_header" ><%= key.name %></h3>
-<div id="<%= uid %>" style="height:auto;min-height:150px" >
-	<b>Number Of Records:</b> <%= key.records.size %><br />
-	<b>Field Names:</b> <%= key.unique_field_names.join( "," ) %><br />
-	<% ajax_class = "show_key_records_#{uid}" %>
-	<%= link_to "Show Valid Records", data_set_key_url(key.keyable,key), :remote => true, :class => ajax_class, :title => "Records that have all the fields required for this key", :rel => "tooltip" %><br />
-	<script>
-		$('.<%= ajax_class %>').bind('ajax:success', function(event, xhr, status, data) {  
-			var table = JSON.parse( data.responseText );
-			setMainDisplay( table );
-		} );
-	</script>
-	<% ajax_class = "show_not_key_records_#{uid}" %>
-	<%= link_to "Show Invalid Records", data_set_key_url(key.keyable,key, :records_type => 'not' ), :remote => true, :class => ajax_class, :title => "Records that do not have all the fields for this key", :rel => "tooltip" %><br />
-	<script>
-		$('.<%= ajax_class %>').bind('ajax:success', function(event, xhr, status, data) {  
-			var table = JSON.parse( data.responseText );
-			setMainDisplay( table );
-		} );
-	</script>
-	<% ajax_class = "show_duplicate_key_records_#{uid}" %>
-	<%= link_to "Show Records With Duplicate Key Values", data_set_key_url(key.keyable,key, :records_type => 'duplicate' ), :remote => true, :class => ajax_class, :title => "Records that have overlapping values across all the key fields", :rel => "tooltip" %><br />
-	<script>
-		$('.<%= ajax_class %>').bind('ajax:success', function(event, xhr, status, data) {  
-			var table = JSON.parse( data.responseText );
-			setMainDisplay( table );
-		} );
-	</script>
+<div <%= @jquery.set_id( "#{uid}_tabs", :tabs ) %> style="height:auto;min-height:150px" >
 
-	<% ajax_class = "delete_key_#{uid}" %>
-	<%= link_to 'Delete Key', data_set_key_url( key.keyable,key ), :method => :delete, :remote => true, :class => ajax_class %>
-	<script>
-		$('.<%= ajax_class %>').bind('ajax:success', function() {  
-			$('#<%= uid %>').fadeOut();  
-			$('#<%= uid %>_header').fadeOut();  
-			resetJQueryUI('accordion','current_keys');
-		});
-	</script>
+	<ul>
+		<li><a href="#basics">Basics</a></li>
+		<li><a href="#conditions">Conditions</a></li>
+		<li><a href="#add_condition">Add Condition</a></li>
+	</ul>
+
+	<div id="basics" >
+		<b>Number Of Minimal Records:</b> <%= key.records.count %><br />
+		<b>Key Field Names:</b> <%= key.unique_field_names.join( "," ) %><br />
+		<b>Number Of Conditional Records:</b> <%= key.key_records.where( :status => 'valid' ).count %><br />
+		<% ajax_class = "show_key_records_#{uid}" %>
+		<%= link_to "Show Valid Records", data_set_key_url(key.keyable,key), :remote => true, :class => ajax_class, :title => "Records that have all the fields required for this key", :rel => "tooltip" %><br />
+		<script>
+			$('.<%= ajax_class %>').bind('ajax:success', function(event, xhr, status, data) {  
+				var table = JSON.parse( data.responseText );
+				setMainDisplay( table );
+			} );
+		</script>
+		<% ajax_class = "show_not_key_records_#{uid}" %>
+		<%= link_to "Show Invalid Records", data_set_key_url(key.keyable,key, :records_type => 'not' ), :remote => true, :class => ajax_class, :title => "Records that do not have all the fields for this key", :rel => "tooltip" %><br />
+		<script>
+			$('.<%= ajax_class %>').bind('ajax:success', function(event, xhr, status, data) {  
+				var table = JSON.parse( data.responseText );
+				setMainDisplay( table );
+			} );
+		</script>
+		<% ajax_class = "show_duplicate_key_records_#{uid}" %>
+		<%= link_to "Show Records With Duplicate Key Values", data_set_key_url(key.keyable,key, :records_type => 'duplicate' ), :remote => true, :class => ajax_class, :title => "Records that have overlapping values across all the key fields", :rel => "tooltip" %><br />
+		<script>
+			$('.<%= ajax_class %>').bind('ajax:success', function(event, xhr, status, data) {  
+				var table = JSON.parse( data.responseText );
+				setMainDisplay( table );
+			} );
+		</script>
+
+		<% ajax_class = "delete_key_#{uid}" %>
+		<%= link_to 'Delete Key', data_set_key_url( key.keyable,key ), :method => :delete, :remote => true, :class => ajax_class %>
+		<script>
+			$('.<%= ajax_class %>').bind('ajax:success', function() {  
+				$('#<%= uid %>').fadeOut();  
+				$('#<%= uid %>_header').fadeOut();  
+				resetJQueryUI('accordion','current_keys');
+			});
+		</script>
+	</div>
+	<div id="conditions" >
+	</div>
+	<div id="add_condition" >
+	</div>
 </div>

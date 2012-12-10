@@ -1,31 +1,9 @@
 class DataSetsController < ApplicationController
 
-	class JQueryUIsTracker
-		def initialize( gon )
-			@gon = gon
-			@gon.jquery_uis = Hash.new
-		end
-
-		def set_id( id, type, settings = {} )
-			@gon.jquery_uis[ type ] ||= Hash.new
-			case type
-			when :tabs
-				settings.reverse_merge! 'collapsible' => true, 'heightStyle' => "content", 'active' => false
-			when :accordion
-				settings.reverse_merge!	'collapsible' => true, 'heightStyle' => 'content', 'active' => false
-			when :data_table
-				settings.reverse_merge!	'sPaginationType' => 'full_numbers',  'bJQueryUI' => true,  'bDeferRender' => true
-			end
-
-			@gon.jquery_uis[ type ][ id ] = settings 
-			return "id=#{id}"
-		end
-	end
-
 	# GET /data_sets/1
 	# GET /data_sets/1.json
 	def show
-		@jquery = JQueryUIsTracker.new( gon )
+		@jquery = InitHelper.new( gon )
 
 		# load the target dataset
 		@data_set = DataSet.find(params[:id])
@@ -48,7 +26,7 @@ class DataSetsController < ApplicationController
 	# GET /data_sets
 	# GET /data_sets.json
 	def index
-		@jquery = JQueryUIsTracker.new( gon )
+		@jquery = InitHelper.new( gon )
 		@data_sets = DataSet.all
 
 		respond_to do |format|

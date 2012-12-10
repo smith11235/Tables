@@ -1,19 +1,11 @@
 Key: 
-	- edit:
-		- data_sets/show
-			- render keys/new
-			- render keys
-			- keys_controller, key_table, _key.html.erb 
-
 	- has_many :conditions 
 
-
-
-
 Condition:
-  - key:references left_field:references comparison:string data_type:string right_field:references right_value:references
-	- right_field or right_value will be null
+  - key:references left_field:references comparison:string data_type:string right_field:references right_value:string
+		- right_field or right_value will be null
 	- data_type allows specification of what to process the field data as 
+		- data_type errors should be flagged in key_record status
 	- comparison: =, <, >, regex
 
 Join:
