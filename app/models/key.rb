@@ -1,5 +1,5 @@
 class Key < ActiveRecord::Base
-	belongs_to :data_set
+	belongs_to :keyable, :polymorphic => true
 	attr_accessible :name
 
 	has_many :key_fields, :dependent => :destroy
@@ -15,7 +15,7 @@ class Key < ActiveRecord::Base
 	end
 
 	def set_records
-		self.data_set.records.each do |record| # check each record
+		self.keyable.records.each do |record| # check each record
 			has_all_fields = true # does it have the requisite keys
 			self.key_fields.each do |key_field|
 				has_all_fields = false if record.get_cell( key_field.field ).field_id.nil?
@@ -31,7 +31,7 @@ class Key < ActiveRecord::Base
 	def get_not_records
 		record_ids = self.records.map(&:id) # id's of records matching this key
 		not_records = Array.new
-		self.data_set.records.each do |record| # loop through all available records
+		self.keyable.records.each do |record| # loop through all available records
 			not_records << record unless record_ids.include?( record.id ) # if not matched to this key
 		end
 		not_records 

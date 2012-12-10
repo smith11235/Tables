@@ -2,24 +2,24 @@ class KeyTable
 
 	def initialize( key, records_type )
 		@table = Hash.new
-		@table[ :columns ] = key.data_set.fields.collect { |field| { "sTitle" => field.name } }
+		@table[ :columns ] = key.keyable.fields.collect { |field| { "sTitle" => field.name } }
 
 		case records_type
 		when nil # the matching records
 			@table[ :records ] = key.records.collect do |record|
-				key.data_set.fields.collect do |field|
+				key.keyable.fields.collect do |field|
 					record.get_cell( field ).string
 				end
 			end
 		when 'not'
 			@table[ :records ] = key.get_not_records.collect do |record|
-				key.data_set.fields.collect do |field|
+				key.keyable.fields.collect do |field|
 					record.get_cell( field ).string
 				end
 			end
 		when 'duplicate'
 			@table[ :records ] = key.get_duplicate_records.collect do |record|
-				key.data_set.fields.collect do |field|
+				key.keyable.fields.collect do |field|
 					record.get_cell( field ).string
 				end
 			end

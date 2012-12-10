@@ -1,14 +1,13 @@
 Key: 
-	- belongs_to :keyable, :polymorphic => true
-		- rails generate migration RemoveDataSetIdFromKeys data_set_id:integer
-		- rails generate migration AddKeyableToKeys keyable_id:integer keyable_type:string
-	- rake demo:load
+	- edit:
+		- data_sets/show
+			- render keys/new
+			- render keys
+			- keys_controller, key_table, _key.html.erb 
 
-	- edit keys_controller, key_table, _key.html.erb 
 	- has_many :conditions 
 
-DataSet: 
-	- has_many :keys, :as => :keyable
+
 
 
 Condition:
@@ -20,6 +19,8 @@ Condition:
 Join:
 	- has_many :keys, :as => :keyable
 	- only displays data when a key with Condition's involving fields on both sides has been created
+	- key_records:
+		- need to support join records...
 
 - keys: 
 	- create key/join: 
