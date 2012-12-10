@@ -1,22 +1,25 @@
-DataSet: 
-	- has_many :keys, :as => :keyable
-
-Join:
-	- has_many :keys, :as => :keyable
-	- only displays data when a key with Condition's involving fields on both sides has been created
-
 Key: 
-	- edit keys_controller, key_table, _key.html.erb 
 	- belongs_to :keyable, :polymorphic => true
 		- rails generate migration RemoveDataSetIdFromKeys data_set_id:integer
 		- rails generate migration AddKeyableToKeys keyable_id:integer keyable_type:string
+	- rake demo:load
+
+	- edit keys_controller, key_table, _key.html.erb 
 	- has_many :conditions 
+
+DataSet: 
+	- has_many :keys, :as => :keyable
+
 
 Condition:
   - key:references left_field:references comparison:string data_type:string right_field:references right_value:references
 	- right_field or right_value will be null
 	- data_type allows specification of what to process the field data as 
 	- comparison: =, <, >, regex
+
+Join:
+	- has_many :keys, :as => :keyable
+	- only displays data when a key with Condition's involving fields on both sides has been created
 
 - keys: 
 	- create key/join: 

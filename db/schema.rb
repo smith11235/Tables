@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20121204021652) do
+ActiveRecord::Schema.define(:version => 20121210202935) do
 
   create_table "cells", :force => true do |t|
     t.integer  "record_id"
@@ -78,12 +78,11 @@ ActiveRecord::Schema.define(:version => 20121204021652) do
 
   create_table "keys", :force => true do |t|
     t.string   "name"
-    t.integer  "data_set_id"
-    t.datetime "created_at",  :null => false
-    t.datetime "updated_at",  :null => false
+    t.datetime "created_at",   :null => false
+    t.datetime "updated_at",   :null => false
+    t.integer  "keyable_id"
+    t.string   "keyable_type"
   end
-
-  add_index "keys", ["data_set_id"], :name => "index_keys_on_data_set_id"
 
   create_table "records", :force => true do |t|
     t.integer  "data_set_id"
