@@ -1,15 +1,13 @@
 <div id="create_key_condition" >
+	Make these div id's unique to the key they are for
+	<b>Condition Format:</b> ( left field ) ( comparison ) ( right_field or right_value )<br />
+	<b>Data Type:</b> Allows comparisons other than simple string comparison<br />
 <%= form_for( [key.keyable, key, key.conditions.build], :remote => true ) do |f| %>
 	<% fields = key.keyable.fields.collect { |field| [ field.name, field.id ] } %>
-	Left Field (mandatory): 
-		<%= f.select :left_field, fields %><br />
-
-	f.input :comparison %>
-	f.input :data_type %>
-	f.association :right_field %>
-	f.input :right_value %>
-
-
+	Left Field (mandatory): <%= f.select :left_field, fields %><br />
+	Comparison: <%= f.select :comparison, [ ['Equals','='],['Less Than','<'],['Greater Than','>'],['Regular Expression','regex'] ] %><br />
+	Right Field: <%= f.select :right_field, fields %> OR Right Value: <%= f.text_field :right_value %><br />
+	Data Type: <%= f.select :data_type, [ ['String','string'],['Integer','int'],['Float','float'],['DateTime','datetime']] %><br />
 	<div class="actions">
 		<%= f.submit( "Create Condition" ) %>
 	</div>

@@ -1,9 +1,7 @@
-Key: 
-	- has_many :conditions 
-
 Condition:
-  - key:references left_field:references comparison:string data_type:string right_field:references right_value:string
-		- right_field or right_value will be null
+	- work on _form and then conditions display
+
+	- right_field or right_value will be null
 	- data_type allows specification of what to process the field data as 
 		- data_type errors should be flagged in key_record status
 	- comparison: =, <, >, regex
