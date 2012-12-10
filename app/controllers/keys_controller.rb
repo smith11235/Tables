@@ -5,7 +5,13 @@ class KeysController < ApplicationController
 	# POST /keys.json
 	def create
 		@jquery = InitHelper.new( gon )
-		@keyable = DataSet.find(params[:data_set_id])
+		if params[:data_set_id]
+			@keyable = DataSet.find(params[:data_set_id])
+		elsif params[:join_id]
+			@keyable = Join.find(params[:join_id])
+		else
+			raise "missing keyable id"
+		end
 
 		if params[:field_ids].nil?
 			raise "Must select fields when creating a key" 
@@ -28,8 +34,14 @@ class KeysController < ApplicationController
 	# GET /keys/1
 	# GET /keys/1.json
 	def show
-		@data_set = DataSet.find(params[:data_set_id])
-		@key = @data_set.keys.find(params[:id])
+		if params[:data_set_id]
+			@keyable = DataSet.find(params[:data_set_id])
+		elsif params[:join_id]
+			@keyable = Join.find(params[:join_id])
+		else
+			raise "missing keyable id"
+		end
+		@key = @keyable.keys.find(params[:id])
 
 		records_type = params[:records_type] 
 		table = KeyTable.new( @key, records_type )
