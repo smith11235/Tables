@@ -31,8 +31,12 @@ class Key < ActiveRecord::Base
 		end
 	end
 
+	def valid_records
+		self.key_records.where( :status => 'valid' ).collect {|key_record| key_record.record }
+	end
+
 	def get_not_records
-		record_ids = self.records.map(&:id) # id's of records matching this key
+		record_ids = valid_records.map(&:id)  # id's of records matching this key
 		not_records = Array.new
 		self.keyable.records.each do |record| # loop through all available records
 			not_records << record unless record_ids.include?( record.id ) # if not matched to this key
@@ -43,7 +47,7 @@ class Key < ActiveRecord::Base
 	def get_duplicate_records
 		primary_keys = Hash.new	
 
-		self.records.each do |record| # check each record
+		valid_records.each do |record| # check each record
 			pk_value = ""
 			self.key_fields.each do |key_field|
 				 pk_value << "[#{record.get_cell( key_field.field ).string}]"

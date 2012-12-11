@@ -6,9 +6,9 @@ class KeyTable
 
 		case records_type
 		when nil # the matching records
-			@table[ :records ] = key.records.collect do |record|
+			@table[ :records ] = key.valid_records.collect do |record|
 				key.keyable.fields.collect do |field|
-					record.get_cell( field ).string
+					key_record.record.get_cell( field ).string
 				end
 			end
 		when 'not'
