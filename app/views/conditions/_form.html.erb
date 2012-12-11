@@ -14,9 +14,8 @@
 <% end %>
 <script>
 	$('#<%= form_id %>').bind('ajax:success', function(event, xhr, status, data) {  
-		alert('created condition');
-		console.log(data);
-		
+		var condition_info = JSON.parse( data.responseText );
+		$("#<%= "key_#{key.id}_conditions" %>").prepend( condition_info.html );
 		$('#<%= "key_#{key.id}_tabs" %>').tabs('select',1);
 	} );
 </script>

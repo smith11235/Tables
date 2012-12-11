@@ -1,8 +1,4 @@
 <div>
-	<b>Left field:</b> <%= @condition.left_field.name %><br />
-	<b>Comparison:</b> <%= @condition.comparison %><br />
-
-	<b>Data type:</b> <%= @condition.data_type %><br />
-	<b>Right field:</b> <%= @condition.right_field.name unless @condition.right_field.nil?  %><br />
-	<b>Right value:</b> <%= @condition.right_value %>
+	<% right_display = condition.right_field.nil? ? condition.right_value : condition.right_field.name %>
+	Data Type: <%= condition.data_type %>: ( <%= condition.left_field.name %> ) <%= condition.comparison %> ( <%= right_display %> )
 </div>
