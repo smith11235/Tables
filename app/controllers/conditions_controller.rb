@@ -1,70 +1,32 @@
 class ConditionsController < ApplicationController
-  # GET /conditions
-  # GET /conditions.json
-  def index
-    @conditions = Condition.all
-
-    respond_to do |format|
-      format.html # index.html.erb
-      format.json { render json: @conditions }
-    end
-  end
-
-  # GET /conditions/1
-  # GET /conditions/1.json
-  def show
-    @condition = Condition.find(params[:id])
-
-    respond_to do |format|
-      format.html # show.html.erb
-      format.json { render json: @condition }
-    end
-  end
-
-  # GET /conditions/new
-  # GET /conditions/new.json
-  def new
-    @condition = Condition.new
-
-    respond_to do |format|
-      format.html # new.html.erb
-      format.json { render json: @condition }
-    end
-  end
-
-  # GET /conditions/1/edit
-  def edit
-    @condition = Condition.find(params[:id])
-  end
 
   # POST /conditions
   # POST /conditions.json
   def create
-    @condition = Condition.new(params[:condition])
+    @condition = Condition.new 
+		@condition.key = Key.find( params[:key_id] )
+		raise "Invalid Key Id: #{params[:key_id]}" if @condition.key.nil?
+		
+	  left_field = Field.find( params[:condition][:left_field] )
+		raise "invalide left field id: #{params[:condition][:left_field]}" if left_field.nil?
+		@condition.left_field = left_field
+		@condition.comparison = params[:condition][:comparison]
+		@condition.data_type = params[:condition][:data_type]
+		if params[:condition][:right_field] =~ /\d+/
+	  	right_field = Field.find( params[:condition][:right_field] )
+			raise "invalide right field id: #{params[:condition][:right_field]}" if right_field.nil?
+			@condition.right_field = right_field 
+		elsif params[:condition][:right_value] =~ /.+/
+			@condition.right_value = params[:condition][:right_value]
+		else
+			raise "Missing 'right' side"
+		end
 
     respond_to do |format|
       if @condition.save
-        format.html { redirect_to @condition, notice: 'Condition was successfully created.' }
-        format.json { render json: @condition, status: :created, location: @condition }
+				format.json { render json: { 'html' => render_to_string( :partial =>"condition.html.erb",:locals =>{:condition=>@condition} )  } }
       else
-        format.html { render action: "new" }
-        format.json { render json: @condition.errors, status: :unprocessable_entity }
-      end
-    end
-  end
-
-  # PUT /conditions/1
-  # PUT /conditions/1.json
-  def update
-    @condition = Condition.find(params[:id])
-
-    respond_to do |format|
-      if @condition.update_attributes(params[:condition])
-        format.html { redirect_to @condition, notice: 'Condition was successfully updated.' }
-        format.json { head :no_content }
-      else
-        format.html { render action: "edit" }
-        format.json { render json: @condition.errors, status: :unprocessable_entity }
+				raise "Could not save condition"
       end
     end
   end

@@ -5,6 +5,7 @@
 	<% fields = key.keyable.fields.collect { |field| [ field.name, field.id ] } %>
 	Left Field (mandatory): <%= f.select :left_field, fields %><br />
 	Comparison: <%= f.select :comparison, [ ['Equals','='],['Less Than','<'],['Greater Than','>'],['Regular Expression','regex'] ] %><br />
+	<% fields.insert( 0, ['',nil] ) %>
 	Right Field: <%= f.select :right_field, fields %> OR Right Value: <%= f.text_field :right_value %><br />
 	Data Type: <%= f.select :data_type, [ ['String','string'],['Integer','int'],['Float','float'],['DateTime','datetime']] %><br />
 	<div class="actions">
