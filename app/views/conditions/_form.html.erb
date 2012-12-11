@@ -1,8 +1,7 @@
-<div id="create_key_condition" >
-	Make these div id's unique to the key they are for
-	<b>Condition Format:</b> ( left field ) ( comparison ) ( right_field or right_value )<br />
-	<b>Data Type:</b> Allows comparisons other than simple string comparison<br />
-<%= form_for( [key.keyable, key, key.conditions.build], :remote => true ) do |f| %>
+<% form_id = "key_#{key.id}_new_condition" %>
+<b>Condition Format:</b> ( left field ) ( comparison ) ( right_field or right_value )<br />
+<b>Data Type:</b> Allows comparisons other than simple string comparison<br />
+<%= form_for( [key.keyable, key, key.conditions.build], :html => {:id => form_id}, :remote => true ) do |f| %>
 	<% fields = key.keyable.fields.collect { |field| [ field.name, field.id ] } %>
 	Left Field (mandatory): <%= f.select :left_field, fields %><br />
 	Comparison: <%= f.select :comparison, [ ['Equals','='],['Less Than','<'],['Greater Than','>'],['Regular Expression','regex'] ] %><br />
@@ -12,12 +11,12 @@
 		<%= f.submit( "Create Condition" ) %>
 	</div>
 <% end %>
-
 <script>
-	$('#new_condition').bind('ajax:success', function(event, xhr, status, data) {  
+	$('#<%= form_id %>').bind('ajax:success', function(event, xhr, status, data) {  
 		alert('created condition');
 		console.log(data);
+		
+		$('#<%= "key_#{key.id}_tabs" %>').tabs('select',1);
 	} );
 </script>
-</div>
 

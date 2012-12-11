@@ -1,5 +1,4 @@
 Condition:
-	- work on _form and then conditions display
 
 	- right_field or right_value will be null
 	- data_type allows specification of what to process the field data as 

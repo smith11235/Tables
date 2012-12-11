@@ -3,12 +3,12 @@
 <div <%= @jquery.set_id( "#{uid}_tabs", :tabs ) %> style="height:auto;min-height:150px" >
 
 	<ul>
-		<li><a href="#<%= uid %>basics">Basics</a></li>
-		<li><a href="#<%= uid %>conditions">Conditions</a></li>
-		<li><a href="#<%= uid %>add_condition">Add Condition</a></li>
+		<li><a href="#<%= uid %>_basics">Basics</a></li>
+		<li><a href="#<%= uid %>_conditions">Conditions</a></li>
+		<li><a href="#<%= uid %>_add_condition">Add Condition</a></li>
 	</ul>
 
-	<div id="<%= uid %>basics" >
+	<div id="<%= uid %>_basics" >
 		<b>Number Of Minimal Records:</b> <%= key.records.count %><br />
 		<b>Key Field Names:</b> <%= key.unique_field_names.join( "," ) %><br />
 		<b>Number Of Conditional Records:</b> <%= key.key_records.where( :status => 'valid' ).count %><br />
@@ -47,9 +47,9 @@
 			});
 		</script>
 	</div>
-	<div id="<%= uid %>conditions" >
+	<div id="<%= uid %>_conditions" >
 	</div>
-	<div id="<%= uid %>add_condition" >
+	<div id="<%= uid %>_add_condition" >
 		<%= render 'conditions/form.html.erb', :key => key  %>
 	</div>
 </div>
