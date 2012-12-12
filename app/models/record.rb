@@ -2,9 +2,14 @@ class Record < ActiveRecord::Base
   belongs_to :data_set
 	has_many :cells
 
+	def has_field?( field )
+		populate_fields_hash
+		@fields_hash.has_key?( field )
+	end
+
 	def get_cell( field )
 		populate_fields_hash
-		return @fields_hash.has_key?( field ) ? @fields_hash[ field ] : Cell.new
+		return self.has_field?( field ) ? @fields_hash[ field ] : Cell.new
 	end	
 
 	def populate_fields_hash

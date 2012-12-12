@@ -1,5 +1,4 @@
 Condition:
-	- key: on creation, not refreshing view
 	- filter records when created
 	- filter records when destroyed
 

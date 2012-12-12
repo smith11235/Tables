@@ -8,7 +8,7 @@ class KeyTable
 		when nil # the matching records
 			@table[ :records ] = key.valid_records.collect do |record|
 				key.keyable.fields.collect do |field|
-					key_record.record.get_cell( field ).string
+					record.get_cell( field ).string
 				end
 			end
 		when 'not'
