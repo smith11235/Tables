@@ -11,6 +11,7 @@
 	<div id="<%= uid %>_basics" >
 		<b>Number Of Minimal Records:</b> <%= key.records.count %><br />
 		<b>Key Field Names:</b> <%= key.unique_field_names.join( "," ) %><br />
+		<b>Number of Conditions:</b> <%= key.conditions.count %><br />
 		<b>Number Of Conditional Records:</b> <%= key.key_records.where( :status => 'valid' ).count %><br />
 		<% ajax_class = "show_key_records_#{uid}" %>
 		<%= link_to "Show Valid Records", data_set_key_url(key.keyable,key), :remote => true, :class => ajax_class, :title => "Records that have all the fields required for this key", :rel => "tooltip" %><br />

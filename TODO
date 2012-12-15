@@ -1,6 +1,7 @@
 Condition:
 	- filter records when created
 	- filter records when destroyed
+	- Show Invalid Records: add 'key_record.status' field
 
 Join:
 	- has_many :keys, :as => :keyable

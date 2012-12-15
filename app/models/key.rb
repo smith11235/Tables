@@ -16,51 +16,22 @@ class Key < ActiveRecord::Base
 		return self.fields.collect {|field| field.name }
 	end
 
-	def set_cell_to_type( cell, type )
-		case type
-		when 'datetime'
-			cell.datetime = cell.string
-		when 'float'
-			cell.float = cell.string
-		when 'int'
-			cell.int = cell.string
-		end
-		return cell.save
-	end
-
 	def reindex_records
+
 		self.key_records.each do |key_record|
-			status = ''
+			key_record.status = ''
+
 			self.conditions.each do |condition|
-				left_cell = key_record.record.get_cell( condition.left_field )
-				if left_cell.field_id.nil?		
-					status << "[missing left field]"
-				elsif ! self.set_cell_to_type( left_cell, condition.data_type )
-					status << "[cant convert #{left_cell.string} to #{condition.data_type}]"
-				end
+				condition.valid_record?( key_record )
+			end # end of conditions.each
 
-				right_cell = Cell.new # default for right value
-				if condition.right_field
-					right_cell = key_record.record.get_cell( condition.right_field )
-					status << "[missing right field]" if right_cell.field_id.nil?		
-				elsif condition.right_value
-					right_cell.string = condition.right_value
-				end
-
-				if ! self.set_cell_to_type( right_cell, condition.data_type )
-					raise "dont actually save a fake cell, but still validate it"
-				end
-
-				raise "run @condition.comparison"
-
+			if key_record.status == ''
+				key_record.status = 'valid'
 			end
 
-			status = 'valid' if status == ''
-			if status != key_record.status
-				key_record.status = status
-				key_record.save!
-			end
-		end
+			key_record.save!
+
+		end # end of key_record.each
 	end
 
 	def set_records
