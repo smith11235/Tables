@@ -12,6 +12,7 @@ class Table
 
 	def as_json(options = {})
 		{
+			:title => 'All Records',
 			:records => @table[:records],
 			:columns => @table[:columns]
 		}

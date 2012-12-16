@@ -30,6 +30,7 @@ this.setMainDisplay = setMainDisplay = ( table ) ->
 		bJQueryUI: true,
 		aaData: table.records,
 		aoColumns: table.columns
+	$('#main_display_title').html("<h1>#{table.title}</h1>")
 
 # use this method to do the initial load
 jQuery ->
