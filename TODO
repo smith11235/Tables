@@ -1,11 +1,36 @@
+javascript/coffeescript cleanup:
+	- create function in app/assets/javascript/data_set
+	  - new_condition_success, new_key_success
+		- set class to new_key_success, new_condition_success
+	- condition not working, javascript is wrong 
+
 Condition:
-	- filter records when created
+	- set main display when created
 	- filter records when destroyed
-	- Show Invalid Records: add 'key_record.status' field
+		- add button in _condition.html.erb with ajax
+		- deploy for keys, etc
+	- Show Unconditional Records
+		- use row_details as key_record.status
+
+app/models/keyable.rb
+	- interface module for DataSet and Join
+	- convert key and join to use this as well
+
+_key.html.erb:
+	- setMainDisplay on select
+	- javascript function with name on each script 
 
 Join:
 	- has_many :keys, :as => :keyable
-	- only displays data when a key with Condition's involving fields on both sides has been created
+	- only displays data when a key has been selected 
+
+	- create key:
+		- like a data_set's key, this looks for fields on both the left and right of the join
+			- if selected, generates a pool of records
+			- refined as conditions added or deleted
+			- all wiped out if conditions do not exist
+
+
 	- key_records:
 		- need to support join records...
 

@@ -1,7 +1,9 @@
 <% form_id = "key_#{key.id}_new_condition" %>
+
 <b>Condition Format:</b> ( left field ) ( comparison ) ( right_field or right_value )<br />
 <b>Data Type:</b> Allows comparisons other than simple string comparison<br />
-<%= form_for( [key.keyable, key, key.conditions.build], :html => {:id => form_id}, :remote => true ) do |f| %>
+
+<%= form_for( [key.keyable, key, key.conditions.build], :html => { :class => 'new_condition_success' }, :remote => true ) do |f| %>
 	<% fields = key.keyable.fields.collect { |field| [ field.name, field.id ] } %>
 	Left Field (mandatory): <%= f.select :left_field, fields %><br />
 	Comparison: <%= f.select :comparison, [ ['Equals','='],['Less Than','<'],['Greater Than','>'],['Regular Expression','regex'] ] %><br />
@@ -12,11 +14,5 @@
 		<%= f.submit( "Create Condition" ) %>
 	</div>
 <% end %>
-<script>
-	$('#<%= form_id %>').bind('ajax:success', function(event, xhr, status, data) {  
-		var condition_info = JSON.parse( data.responseText );
-		$("#<%= "key_#{key.id}_conditions" %>").prepend( condition_info.html );
-		$('#<%= "key_#{key.id}_tabs" %>').tabs('select',1);
-	} );
-</script>
+
 

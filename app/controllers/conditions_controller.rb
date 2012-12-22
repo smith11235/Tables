@@ -24,10 +24,15 @@ class ConditionsController < ApplicationController
 
 		@condition.save!
 
-	  @condition.key.reindex_records
+		@condition.key.reindex_records
 
 		respond_to do |format|
-			format.json { render json: { 'html' => render_to_string( :partial =>"condition.html.erb",:locals =>{:condition=>@condition} )  } }
+			format.json { render json: 
+				{ 'html' => render_to_string( :partial =>"condition.html.erb",:locals =>{:condition=>@condition} ),
+					'key_id' => @condition.key.id,
+					'table' => KeyTable.new( @condition.key, 'valid' )
+			} 
+			}
 		end
 	end
 

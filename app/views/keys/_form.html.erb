@@ -1,5 +1,5 @@
 <div id="create_key" >
-	<%= form_for( [keyable, keyable.keys.build], :remote => true ) do |f| %>
+	<%= form_for( [keyable, keyable.keys.build], :remote => true, :html => {:class => 'new_key_success'} ) do |f| %>
 		<div class="field">
 			<%= f.label :name %><br />
 			<%= f.text_field :name %>
@@ -18,15 +18,4 @@
 		</div>
 	<% end %>
 
-	<script>
-		$('#new_key').bind('ajax:success', function(event, xhr, status, data) {  
-			var key_info = JSON.parse( data.responseText );
-			$("#current_keys").prepend( key_info.html );
-			resetJQueryUI('accordion','current_keys');
-
-			$('#key_' + key_info.key_id + '_tabs').tabs();
-			$('#key_tabs').tabs('select',0);
-			$("#current_keys").accordion('option','active',0);
-		} );
-	</script>
 </div>

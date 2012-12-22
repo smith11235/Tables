@@ -53,24 +53,6 @@ class Key < ActiveRecord::Base
 		self.key_records.where( :status => 'valid' ).collect {|key_record| key_record.record }
 	end
 
-	def get_invalid_records
-		invalid_records = Array.new # invalid key_records or filtered records
-
-		self.keyable.records.each do |record| # loop through all available records
-			invalid_records << { :record => record, :status => "all" }
-=begin
-			key_record = self.key_records.where( "record_id = ?", record.id ).first
-			if key_record.nil?
-				invalid_records << { :record => record, :status => "missing minimum key fields" }
-			else
-				invalid_records << { :record => record, :status => key_record.status } 
-			end
-=end
-		end
-
-		invalid_records
-	end
-
 	def get_duplicate_records
 		primary_keys = Hash.new	
 
