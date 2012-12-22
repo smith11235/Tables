@@ -36,15 +36,12 @@ this.setMainDisplay = setMainDisplay = ( table ) ->
 jQuery ->
 	setMainDisplay( gon.table )
 
-this.newConditionSuccess = newConditionSuccess = ( data ) ->
-  info = JSON.parse(data.responseText)
-  $("#key_#{info.key_id}_conditions").prepend( info.html )
-  $("#key_#{info.key_id}_tabs").tabs('select',1)
-  setMainDisplay( info.table ) 
-
-$('.new_condition_success').bind('ajax:success',(event, data, status, xhr) -> 
-	  newConditionSuccess( data ) 
-	)
+jQuery ->
+	$('.new_condition_success').bind 'ajax:success',(event, xhr, status, data) ->
+  	info = JSON.parse(data.responseText)
+  	$("#key_#{info.key_id}_conditions").prepend( info.html )
+  	$("#key_#{info.key_id}_tabs").tabs('select',1)
+  	setMainDisplay( info.table ) 
 
 jQuery ->
 	$('.new_key_success').bind 'ajax:success',(event, xhr, status, data) ->
