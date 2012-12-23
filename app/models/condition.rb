@@ -14,7 +14,7 @@ class Condition < ActiveRecord::Base
 		if left_cell.field_id.nil?		
 			add_error_status key_record, "[no left field: #{self.left_field.name}]"
 		elsif ! left_cell.set_to_type( self.data_type )
-			add_error_status key_record, "[cant convert #{left_cell.string} to #{condition.data_type}]"
+			add_error_status key_record, "[cant convert #{left_cell.string} to #{self.data_type}]"
 		end
 
 		fake_right_cell = nil # using value or cell
@@ -30,7 +30,7 @@ class Condition < ActiveRecord::Base
 								 end
 
 		if ! right_cell.set_to_type( self.data_type )
-			add_error_status key_record, "[cant convert #{right_cell.string} to #{condition.data_type}]"
+			add_error_status key_record, "[cant convert #{right_cell.string} to #{self.data_type}]"
 		end
 
 		self.compare( left_cell, right_cell, key_record )

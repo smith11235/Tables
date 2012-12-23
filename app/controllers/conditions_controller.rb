@@ -28,10 +28,12 @@ class ConditionsController < ApplicationController
 
 		respond_to do |format|
 			format.json { render json: 
-				{ 'html' => render_to_string( :partial =>"condition.html.erb",:locals =>{:condition=>@condition} ),
+				{ 
+					'content_type' => 'text/json',
+					'html' => render_to_string( :partial =>"condition.html.erb",:locals =>{:condition=>@condition} ),
 					'key_id' => @condition.key.id,
 					'table' => KeyTable.new( @condition.key, 'valid' )
-			} 
+				} 
 			}
 		end
 	end

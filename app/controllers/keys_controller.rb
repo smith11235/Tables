@@ -26,7 +26,14 @@ class KeysController < ApplicationController
 			@key.set_records # create a key_record's index
 
 			respond_to do |format|
-				format.json { render json: { 'key_id' => @key.id, 'html' => render_to_string( :partial =>"key.html.erb",:locals =>{:key=>@key} ), 'table' => KeyTable.new( @key, 'valid' ) } }
+				format.json { render json: 
+					{ 
+						'key_id' => @key.id, 
+						'html' => render_to_string( :partial =>"key.html.erb",:locals =>{:key=>@key} ), 
+						'table' => KeyTable.new( @key, 'valid' ),
+						'content_type' => 'text/json'
+					} 
+				}
 			end
 		end
 	end
