@@ -36,6 +36,11 @@ this.setMainDisplay = setMainDisplay = ( table ) ->
 jQuery ->
 	setMainDisplay( gon.table )
 
+jQuery -> 
+	$('.set_main_display').bind 'ajax:success',(event,xhr,status,data) ->
+	  info = JSON.parse( data.responseText )
+		setMainDisplay( info.table )
+
 jQuery ->
 	$('.new_condition_success').bind 'ajax:success',(event, xhr, status, data) ->
   	info = JSON.parse(data.responseText)

@@ -32,12 +32,6 @@
 				resetJQueryUI('accordion','current_keys');
 			});
 		</script>
-		<script>
-			$('.set_main_display').bind('ajax:success', function(event, xhr, status, data) {  
-				var table = JSON.parse( data.responseText );
-				setMainDisplay( table );
-			} );
-		</script>
 	</div>
 	<div id="<%= uid %>_conditions" >
 		<%= render key.conditions %>

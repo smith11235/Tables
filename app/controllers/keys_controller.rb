@@ -53,7 +53,12 @@ class KeysController < ApplicationController
 		records_type = params[:records_type] 
 		table = KeyTable.new( @key, records_type )
 		respond_to do |format|
-			format.json { render json: table  } 
+			format.json { render json: 
+				{ 
+				  'table' => table,
+					'content_type' => 'text/json'
+				}
+			} 
 		end
 	end
 

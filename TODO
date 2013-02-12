@@ -1,7 +1,4 @@
-javascript/coffeescript cleanup:
-	- create function in app/assets/javascript/data_set
-	  - new_condition_success, new_key_success
-		- set class to new_key_success, new_condition_success
+key delete: cleaner coffeescript
 
 Condition:
 	- set main display when created
